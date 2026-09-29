@@ -834,12 +834,12 @@
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ===================================================================== */
         const CONFIG = {
             version: 1, // savollarni o'zgartirsangiz shu raqamni +1 qiling — saqlangan progress tozalanadi
-            ism: "", // ismini bilsangiz shu yerga yozing; bo'sh qoldirsangiz, kirishda o'zidan so'raladi
+            ism: "Nastarinim", // ismini bilsangiz shu yerga yozing; bo'sh qoldirsangiz, kirishda o'zidan so'raladi
             ismniSora: true, // true: kirishda ismini so'raydi va o'sha ismdan foydalanadi
 
             sarlavha: "Senga bitta savolim bor",
             kirish: "Bir nechta savol tayyorladim. To'g'ri javob bergan sari senga kichik xatlar ochiladi. Oxirida esa senga atalgan bir narsa bor.",
-            otishFoizi: 70, // shu foiz yoki undan ko'p bo'lsa papka ochiladi
+            otishFoizi: 60, // shu foiz yoki undan ko'p bo'lsa papka ochiladi
 
             // Telegram hisobot: Cloudflare Worker manzili (README'ga qarang). Bo'sh qolsa faqat brauzer konsoliga yoziladi.
             workerUrl: "https://nastarinim.damirshokh.workers.dev", // masalan: "https://sevgi-bot.sizning-nom.workers.dev"
@@ -851,7 +851,7 @@
             sirliIshora: "Yoki faqat ikkimiz biladigan sirli so'zni yoz.",
 
             // Papka ichida qo'shimcha: bu so'zni bilsa, yashirin fayl ochiladi.
-            yashirinSoz: "sevgim",
+            yashirinSoz: "egizaklar",
             yashirinIshora: "Bu yerda yana bir sir bor. Uni faqat sen bilishing kerak.",
             yashirinXato: "Yo'q, bu emas. Yana o'ylab ko'r 🙈",
             yashirinFayl: {
@@ -863,7 +863,7 @@
 
             // "Birga bo'lgan kunlar" hisoblagichi. Kerak bo'lmasa "" qoldiring.
             boshlanganSana: "25.08.2024", // kun.oy.yil, masalan "12.05.2024"
-            hisoblagichYorligi: "kun birgamiz",
+            hisoblagichYorligi: "kun san bilan birgamiz",
 
             // Savollar. "tanlov" (variantli) yoki "yozma" (o'zi yozadi). "xat" — to'g'ri javobga ochiladigan xat.
             savollar: [{
@@ -886,10 +886,10 @@
                 {
                     tur: "tanlov",
                     savol: "Nechi kundan beri birgamiz?",
-                    variantlar: ["763", "790", "765", "767", "Bilmayman"],
+                    variantlar: ["763", "790", "766", "767", "Bilmayman"],
                     togri: 2,
 
-                    xat: "Lekin bilasanmi manga eng ko'p sani ko'zlaringni rangi oqadi."
+                    xat: "Bu shunchaki ikki yil yoki 3 honalik son bo'lishi mumkun ammo bu vaqt ichida juda ko'p narsala bo'ldii."
                 },
 
 
@@ -938,13 +938,7 @@
                     xat: "Shu so'zni eshitsam mazza qilaman ."
                 },
 
-                {
-                    tur: "yozma",
-                    savol: "Manga sani qaysi erkalashing eng ko'p yoqishini topib ko'rchi?",
-                    javoblar: ["erjonim", ],
-
-                    xat: "Sababi sani uhlasam tushlarimda ko'raman va uyg'ongim kelmaydi."
-                },
+                
             ],
 
             rasmlar: [{

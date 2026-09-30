@@ -628,6 +628,109 @@
             font-weight: 600;
             min-height: 1.4em
         }
+        /* kunlik gap */
+        .daily {
+            margin-top: 18px;
+            color: var(--lemon);
+            font-family: var(--display);
+            font-size: 1.05rem
+        }
+        /* kayfiyat slayderi */
+        .mood {
+            margin-top: 30px;
+            text-align: left
+        }
+        .mood input[type="range"] {
+            width: 100%;
+            margin-top: 10px;
+            accent-color: var(--rose)
+        }
+        .mood .emoji {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-top: 8px;
+            transition: transform .15s
+        }
+        /* yashirin sahifa */
+        .vault-note {
+            background: var(--paper);
+            color: var(--ink);
+            border-radius: 10px;
+            padding: 22px;
+            margin-top: 22px;
+            font-family: var(--display);
+            font-size: 1.1rem;
+            line-height: 1.55;
+            box-shadow: 0 14px 30px rgba(0, 0, 0, .35)
+        }
+        .vault-video {
+            width: 100%;
+            border-radius: 16px;
+            margin-top: 22px;
+            box-shadow: 0 14px 30px rgba(0, 0, 0, .4);
+            background: #000
+        }
+        /* nikoh taklifi */
+        .propose {
+            margin-top: 34px
+        }
+        .twobtn {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 22px
+        }
+        .twobtn .btn {
+            margin-top: 0
+        }
+        .datepick {
+            margin-top: 26px
+        }
+        .datepick input[type="date"] {
+            font: 1rem var(--body);
+            color: var(--mist);
+            background: var(--wine-2);
+            border: 1.5px solid rgba(248, 235, 240, .25);
+            border-radius: 14px;
+            padding: 12px 14px;
+            color-scheme: dark
+        }
+        .datepick .row {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 12px
+        }
+        /* orqaga sanoq */
+        #s-count {
+            text-align: center
+        }
+        .livecount {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap
+        }
+        .livecount div {
+            background: rgba(246, 216, 107, .08);
+            border: 1px solid rgba(246, 216, 107, .25);
+            border-radius: 14px;
+            padding: 16px 14px;
+            min-width: 70px
+        }
+        .livecount b {
+            display: block;
+            font-family: var(--display);
+            font-size: 1.9rem;
+            color: var(--lemon)
+        }
+        .livecount span {
+            font-size: .75rem;
+            opacity: .7
+        }
         /* syurpriz fab */
         
         .fab {
@@ -802,12 +905,59 @@
             <div class="arena-msg" id="arenaMsg" aria-live="polite"></div>
         </section>
 
+        <!-- YASHIRIN SAHIFA: sirli so'z orqali ochiladi -->
+        <section class="screen" id="s-vault">
+            <h1 id="vaultTitle"></h1>
+            <div class="vault-note" id="vaultNote"></div>
+            <video class="vault-video" id="vaultVideo" controls playsinline></video>
+
+            <div class="propose" id="proposeBox">
+                <h2 id="proposeQ"></h2>
+                <div class="twobtn" id="proposeOpts">
+                    <button class="btn" id="proposeYes"></button>
+                    <button class="btn ghost" id="proposeNo"></button>
+                </div>
+                <p class="fb" id="proposeFb" aria-live="polite"></p>
+
+                <div class="datepick" id="datepickBox" hidden>
+                    <p class="lead" id="datepickLabel" style="margin-top:0"></p>
+                    <div class="row">
+                        <input type="date" id="weddingDate" aria-label="Sana">
+                        <button class="btn sm" id="weddingConfirm"></button>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn ghost" id="vaultBack">Ortga qaytish</button>
+        </section>
+
+        <!-- ORQAGA SANOQ: turmush sanasigacha, doim shu oyna ochiladi -->
+        <section class="screen" id="s-count">
+            <h1 id="countTitle"></h1>
+            <p class="lead" id="countDate"></p>
+            <div class="score" id="countDays"></div>
+            <p class="lead" id="countDaysLbl"></p>
+            <div class="livecount" id="liveCount">
+                <div><b id="lcD">00</b><span>kun</span></div>
+                <div><b id="lcH">00</b><span>soat</span></div>
+                <div><b id="lcM">00</b><span>daqiqa</span></div>
+                <div><b id="lcS">00</b><span>soniya</span></div>
+            </div>
+        </section>
+
         <!-- 5. YAKUN -->
         <section class="screen yay" id="s-yay">
             <div class="big">💖</div>
             <h1 id="yayTitle"></h1>
             <p class="lead" id="yayText"></p>
+            <p class="daily" id="dailyMsg"></p>
             <div class="counter" id="counterBox2" hidden><b id="counterN2"></b> <span id="counterLbl2"></span></div>
+
+            <div class="mood" id="moodBox">
+                <p class="lead" style="margin-top:0" id="moodLabel"></p>
+                <input type="range" min="1" max="5" value="3" id="moodRange" aria-label="Kayfiyat">
+                <div class="emoji" id="moodEmoji">🙂</div>
+            </div>
 
             <div class="replybox" id="replyBox">
                 <p class="lead" id="replyLabel" style="margin-top:0"></p>
@@ -850,16 +1000,36 @@
             sirliSoz: "Nastarinim",
             sirliIshora: "Yoki faqat ikkimiz biladigan sirli so'zni yoz.",
 
-            // Papka ichida qo'shimcha: bu so'zni bilsa, yashirin fayl ochiladi.
+            // Papka ichida qo'shimcha: bu so'zni bilsa, yangi sahifa ochiladi — unda kichik xat va video bo'ladi.
             yashirinSoz: "egizaklarrr",
             yashirinIshora: "Bu yerda yana bir sir bor. Uni faqat sen bilishing kerak.",
             yashirinXato: "Yo'q, bu emas. Yana o'ylab ko'r 🙈",
-            yashirinFayl: {
-                turi: "rasm",
-                src: "rasmlar/sirli.png",
-                havola: "",
-                izoh: "Faqat sen uchun."
-            },
+            yashirinSarlavha: "Yana bir sirim bor edi…",
+            yashirinXat: "Bu yergacha yetib kelganing uchun rahmat. Sen uchun yana bir narsa tayyorlab qo'ygandim — pastdagi videoni albatta ko'r.",
+            yashirinVideo: "rasmlar/sirli.mp4",
+
+            // Har kuni o'zgarib turadigan kichik gaplar (yakuniy sahifada, qaytib kirganda ham chiqaveradi).
+            kundalikGaplar: [
+                "Bugun ham sen mening quyoshimsan ☀️",
+                "Seni sog'indim 💌",
+                "Sen bilan hayotim boshqacha 💗",
+                "Bugun ham senga tabassum tilayman 🌸",
+                "Qayerda bo'lsang ham, yuragimdasan 🫶",
+                "Sen mening eng chiroyli qarorimsan 🌷",
+                "Kunlaring baxtli o'tsin, jonim ☀️"
+            ],
+            moodYorligi: "Bugungi kayfiyating qanday?",
+
+            // Yashirin sahifadagi nikoh taklifi
+            turmushSavoli: "Menga turmushga chiqasanmi?",
+            turmushHa: "Ha, albatta 💍",
+            turmushYoq: "Hali emas",
+            turmushYoqJavob: "Mayli, kutaman 🥲 lekin umid qilaman tez orada his-tuyg'ularing o'zgaradi.",
+            turmushSanaSorash: "Qachon? Sanani belgila:",
+            sanaBelgilashTugma: "Belgilash",
+            kutilayotganSarlavha: "Orqaga sanoq boshlandi 💍",
+            kunQoldiYorligi: "kun qoldi",
+            bugunSarlavha: "Bugun shu kun! 💍🎉",
 
             // "Birga bo'lgan kunlar" hisoblagichi. Kerak bo'lmasa "" qoldiring.
             boshlanganSana: "25.08.2024", // kun.oy.yil, masalan "12.05.2024"
@@ -988,7 +1158,7 @@
            ===================================================================== */
 
         const $ = id => document.getElementById(id);
-        const screens = ["s-start", "s-q", "s-end", "s-ask", "s-yay"];
+        const screens = ["s-start", "s-q", "s-end", "s-ask", "s-vault", "s-count", "s-yay"];
         const show = id => {
             screens.forEach(s => $(s).classList.toggle("on", s === id));
             window.scrollTo(0, 0);
@@ -1166,6 +1336,94 @@
             } catch (e) {}
         }
 
+        /* ---------- Yakunlanganlik (test bir marta o'tilgach, doim oxirgi sahifa ochiladi) ---------- */
+        const DKEY = "sevgi_yakun_v" + CONFIG.version;
+
+        function saveDone() {
+            try {
+                localStorage.setItem(DKEY, JSON.stringify({
+                    herName,
+                    unlocked
+                }));
+            } catch (e) {}
+        }
+
+        function loadDone() {
+            try {
+                return JSON.parse(localStorage.getItem(DKEY));
+            } catch (e) {
+                return null;
+            }
+        }
+
+        /* ---------- Turmush sanasi va jonli orqaga sanoq ---------- */
+        const WKEY = "sevgi_turmush_v" + CONFIG.version;
+
+        function saveWedding(dateStr) {
+            try {
+                localStorage.setItem(WKEY, dateStr);
+            } catch (e) {}
+        }
+
+        function loadWedding() {
+            try {
+                return localStorage.getItem(WKEY);
+            } catch (e) {
+                return null;
+            }
+        }
+
+        function formatDate(dateStr) {
+            const [y, m, d] = dateStr.split("-");
+            return `${d}.${m}.${y}`;
+        }
+
+        function computeRemain(dateStr) {
+            const target = new Date(dateStr + "T00:00:00");
+            let diff = target.getTime() - Date.now();
+            if (diff < 0) diff = 0;
+            return {
+                diff,
+                days: Math.floor(diff / 86400000),
+                hours: Math.floor((diff % 86400000) / 3600000),
+                mins: Math.floor((diff % 3600000) / 60000),
+                secs: Math.floor((diff % 60000) / 1000)
+            };
+        }
+
+        function pad(n) {
+            return String(n).padStart(2, "0");
+        }
+
+        let countdownTimer = null,
+            countdownDone = false;
+
+        function renderCountdown(dateStr) {
+            const r = computeRemain(dateStr);
+            $("countDays").textContent = r.days;
+            $("lcD").textContent = pad(r.days);
+            $("lcH").textContent = pad(r.hours);
+            $("lcM").textContent = pad(r.mins);
+            $("lcS").textContent = pad(r.secs);
+            if (r.diff <= 0 && !countdownDone) {
+                countdownDone = true;
+                $("countTitle").textContent = CONFIG.bugunSarlavha;
+                $("countDaysLbl").textContent = "";
+                confetti();
+            }
+        }
+
+        function startCountdown(dateStr) {
+            countdownDone = false;
+            $("countTitle").textContent = CONFIG.kutilayotganSarlavha;
+            $("countDate").textContent = "Sana: " + formatDate(dateStr);
+            $("countDaysLbl").textContent = CONFIG.kunQoldiYorligi;
+            renderCountdown(dateStr);
+            clearInterval(countdownTimer);
+            countdownTimer = setInterval(() => renderCountdown(dateStr), 1000);
+            show("s-count");
+        }
+
         /* ---------- Boshlash ---------- */
         let i = 0,
             right = 0,
@@ -1180,25 +1438,72 @@
         if (!CONFIG.ismniSora || CONFIG.ism) {
             $("nameBox").querySelector("input").hidden = true;
         }
+        $("proposeQ").textContent = CONFIG.turmushSavoli;
+        $("proposeYes").textContent = CONFIG.turmushHa;
+        $("proposeNo").textContent = CONFIG.turmushYoq;
+        $("weddingConfirm").textContent = CONFIG.sanaBelgilashTugma;
 
-        const saved = loadProgress();
-        if (saved && saved.i > 0 && saved.i < total) {
-            const box = $("resumeBox");
-            box.innerHTML = "";
-            const p = document.createElement("p");
-            p.className = "lead";
-            p.textContent = "Oldingi urinishingiz saqlangan edi.";
-            const b = document.createElement("button");
-            b.className = "btn ghost";
-            b.textContent = "Davom ettirish";
-            b.onclick = () => {
-                i = saved.i;
-                right = saved.right;
-                unlocked.push(...saved.unlocked);
-                herName = saved.herName || herName;
-                startQuiz(false);
-            };
-            box.append(p, b);
+        const weddingSaved = loadWedding();
+        if (weddingSaved) {
+            /* Turmush sanasi belgilangan — endi doim to'g'ridan-to'g'ri shu oyna ochiladi */
+            track("🔁 Qaytib keldi (orqaga sanoq)");
+            startCountdown(weddingSaved);
+        } else {
+            const doneData = loadDone();
+            if (doneData) {
+                /* Avval to'liq yakunlagan — endi doim to'g'ridan-to'g'ri oxirgi sahifa ochiladi */
+                herName = doneData.herName || herName;
+                unlocked.push(...(doneData.unlocked || []));
+                track("🔁 Qaytib keldi (avval yakunlagan)");
+                $("s-yay").insertBefore($("folderWrap"), $("replyBox"));
+                $("s-yay").insertBefore($("gallery"), $("replyBox"));
+                $("folderWrap").hidden = false;
+                $("hint").style.display = "";
+                $("folder").classList.remove("open");
+                $("gallery").classList.remove("on");
+                $("yayTitle").textContent = CONFIG.yakunSarlavha;
+                $("yayText").textContent = CONFIG.yakunMatn;
+                $("replyLabel").textContent = CONFIG.javobYorligi;
+                $("moodLabel").textContent = CONFIG.moodYorligi;
+                renderDaily();
+                const days2 = daysCounter(CONFIG.boshlanganSana);
+                $("counterBox2").hidden = days2 === null;
+                if (days2 !== null) {
+                    $("counterN2").textContent = days2;
+                    $("counterLbl2").textContent = CONFIG.hisoblagichYorligi;
+                }
+                show("s-yay");
+            } else {
+                const saved = loadProgress();
+                if (saved && saved.i > 0 && saved.i < total) {
+                    const box = $("resumeBox");
+                    box.innerHTML = "";
+                    const p = document.createElement("p");
+                    p.className = "lead";
+                    p.textContent = "Oldingi urinishingiz saqlangan edi.";
+                    const b = document.createElement("button");
+                    b.className = "btn ghost";
+                    b.textContent = "Davom ettirish";
+                    b.onclick = () => {
+                        i = saved.i;
+                        right = saved.right;
+                        unlocked.push(...saved.unlocked);
+                        herName = saved.herName || herName;
+                        startQuiz(false);
+                    };
+                    box.append(p, b);
+                }
+            }
+        }
+
+        function dayOfYear(d = new Date()) {
+            const start = new Date(d.getFullYear(), 0, 0);
+            return Math.floor((d - start) / 86400000);
+        }
+
+        function renderDaily() {
+            if (!CONFIG.kundalikGaplar || !CONFIG.kundalikGaplar.length) return;
+            $("dailyMsg").textContent = CONFIG.kundalikGaplar[dayOfYear() % CONFIG.kundalikGaplar.length];
         }
 
         $("go").onclick = () => {
@@ -1477,61 +1782,48 @@
             }
             vaultOpen = true;
             sndWin();
-            $("vaultFb").textContent = "";
-            $("vaultIn").disabled = true;
-            $("vaultBtn").disabled = true;
-            track("🔓 Yashirin faylni ochdi");
-            const f = CONFIG.yashirinFayl,
-                box = $("vaultResult");
-            if (f.turi === "havola" && f.havola) {
-                const a = document.createElement("a");
-                a.href = f.havola;
-                a.target = "_blank";
-                a.rel = "noopener";
-                a.className = "btn sm";
-                a.style.display = "inline-block";
-                a.textContent = "Faylni ochish";
-                box.append(a);
-                if (f.izoh) {
-                    const p = document.createElement("p");
-                    p.className = "lead";
-                    p.textContent = f.izoh;
-                    box.append(p);
-                }
-            } else {
-                const t = document.createElement("button");
-                t.className = "tile";
-                t.style.maxWidth = "200px";
-                t.style.margin = "18px 0 0";
-                const frame = document.createElement("div");
-                frame.className = "frame";
-                const img = new Image();
-                img.src = f.src;
-                img.alt = f.izoh || "";
-                img.onerror = () => t.classList.add("broken");
-                const ph = document.createElement("div");
-                ph.className = "ph";
-                ph.textContent = "🔒";
-                frame.append(img, ph);
-                t.appendChild(frame);
-                const cap = document.createElement("span");
-                cap.className = "cap";
-                cap.textContent = f.izoh || "";
-                t.appendChild(cap);
-                t.onclick = () => {
-                    if (t.classList.contains("broken")) return;
-                    $("lbImg").src = f.src;
-                    $("lbImg").alt = f.izoh || "";
-                    $("lbCap").textContent = f.izoh || "";
-                    $("lb").classList.add("on");
-                };
-                box.append(t);
-            }
+            track("🔓 Yashirin sahifani ochdi");
+            $("vaultTitle").textContent = CONFIG.yashirinSarlavha;
+            $("vaultNote").textContent = CONFIG.yashirinXat;
+            $("vaultVideo").src = CONFIG.yashirinVideo;
+            show("s-vault");
         }
         $("vaultBtn").onclick = tryVault;
         $("vaultIn").addEventListener("keydown", e => {
             if (e.key === "Enter") tryVault();
         });
+        $("vaultBack").onclick = () => {
+            $("vaultVideo").pause();
+            show("s-end");
+            $("gallery").scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        };
+
+        /* ---------- Nikoh taklifi va sana belgilash ---------- */
+        $("proposeYes").onclick = () => {
+            track("💍 Turmush taklifiga HA dedi!");
+            flush(false);
+            sndWin();
+            $("proposeFb").textContent = "";
+            $("proposeOpts").hidden = true;
+            $("datepickBox").hidden = false;
+            $("datepickLabel").textContent = CONFIG.turmushSanaSorash;
+        };
+        $("proposeNo").onclick = () => {
+            track("🥲 Turmush taklifiga hozircha yo'q dedi");
+            flush(false);
+            $("proposeFb").textContent = CONFIG.turmushYoqJavob;
+        };
+        $("weddingConfirm").onclick = () => {
+            const val = $("weddingDate").value;
+            if (!val) return;
+            track(`💍 Turmush sanasini belgiladi: ${formatDate(val)}`);
+            flush(false);
+            saveWedding(val);
+            startCountdown(val);
+        };
 
         /* ---------- Oxirgi savol: qochadigan «Yo'q» ---------- */
         $("toAsk").onclick = () => {
@@ -1581,13 +1873,16 @@
 
         function sayYes() {
             track("💖💖💖 «" + CONFIG.haTugma + "» tugmasini BOSDI!");
+            saveDone();
             flush(false);
             sndWin();
             $("yayTitle").textContent = CONFIG.yakunSarlavha;
             $("yayText").textContent = CONFIG.yakunMatn;
             $("replyLabel").textContent = CONFIG.javobYorligi;
+            $("moodLabel").textContent = CONFIG.moodYorligi;
             $("replySent").textContent = "";
             $("replyText").value = "";
+            renderDaily();
             const days = daysCounter(CONFIG.boshlanganSana);
             $("counterBox2").hidden = days === null;
             if (days !== null) {
@@ -1598,6 +1893,17 @@
             confetti();
         }
         yes.onclick = sayYes;
+
+        /* ---------- Kayfiyat slayderi ---------- */
+        const moodEmojis = ["😢", "😕", "🙂", "😍", "🥰"];
+        const moodRange = $("moodRange");
+        moodRange.oninput = () => {
+            $("moodEmoji").textContent = moodEmojis[moodRange.value - 1];
+        };
+        moodRange.addEventListener("change", () => {
+            track(`💗 Kayfiyati: ${moodEmojis[moodRange.value-1]} (${moodRange.value}/5)`);
+            flush(false);
+        });
 
         $("replySend").onclick = () => {
             const v = $("replyText").value.trim();

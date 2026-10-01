@@ -903,6 +903,7 @@
                 <button class="btn ghost" id="no"></button>
             </div>
             <div class="arena-msg" id="arenaMsg" aria-live="polite"></div>
+            <button class="btn ghost" id="askBack">Ortga: rasmlar va xatlarga</button>
         </section>
 
         <!-- YASHIRIN SAHIFA: sirli so'z orqali ochiladi -->
@@ -928,7 +929,10 @@
                 </div>
             </div>
 
-            <button class="btn ghost" id="vaultBack">Ortga qaytish</button>
+            <div class="twobtn">
+                <button class="btn ghost" id="vaultBack">Ortga: rasmlar va xatlarga</button>
+                <button class="btn ghost" id="vaultToYay" hidden>Kayfiyat sahifasiga o'tish 💌</button>
+            </div>
         </section>
 
         <!-- ORQAGA SANOQ: turmush sanasigacha, doim shu oyna ochiladi -->
@@ -943,6 +947,7 @@
                 <div><b id="lcM">00</b><span>daqiqa</span></div>
                 <div><b id="lcS">00</b><span>soniya</span></div>
             </div>
+            <button class="btn ghost" id="countBack">Kayfiyat sahifasiga qaytish 💌</button>
         </section>
 
         <!-- 5. YAKUN -->
@@ -952,6 +957,7 @@
             <p class="lead" id="yayText"></p>
             <p class="daily" id="dailyMsg"></p>
             <div class="counter" id="counterBox2" hidden><b id="counterN2"></b> <span id="counterLbl2"></span></div>
+            <button class="btn ghost" id="yayBack" hidden>Ortga: rasmlar va xatlarga</button>
 
             <div class="mood" id="moodBox">
                 <p class="lead" style="margin-top:0" id="moodLabel"></p>
@@ -983,7 +989,7 @@
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ▼▼▼  SHU YERNI O'ZINGIZGA MOSLAB TAHRIRLANG  ▼▼▼
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ===================================================================== */
         const CONFIG = {
-            version: 2, // savollarni o'zgartirsangiz shu raqamni +1 qiling — saqlangan progress tozalanadi
+            version: 1, // savollarni o'zgartirsangiz shu raqamni +1 qiling — saqlangan progress tozalanadi
             ism: "Nastarinim", // ismini bilsangiz shu yerga yozing; bo'sh qoldirsangiz, kirishda o'zidan so'raladi
             ismniSora: true, // true: kirishda ismini so'raydi va o'sha ismdan foydalanadi
 
@@ -1001,12 +1007,12 @@
             sirliIshora: "Yoki faqat ikkimiz biladigan sirli so'zni yoz.",
 
             // Papka ichida qo'shimcha: bu so'zni bilsa, yangi sahifa ochiladi — unda kichik xat va video bo'ladi.
-            yashirinSoz: "egizaklar",
+            yashirinSoz: "egizaklarrr",
             yashirinIshora: "Bu yerda yana bir sir bor. Uni faqat sen bilishing kerak.",
             yashirinXato: "Yo'q, bu emas. Yana o'ylab ko'r 🙈",
             yashirinSarlavha: "Yana bir sirim bor edi…",
-            yashirinXat: "Bilasanmi nima, man sani bu videodagi gapladanam kop sevaman bunadanam kop narsani hohlayman lekin ishon san mani doyim tushunishingni va iloji boricha hato qimasligingni i har doim borgan sari koproq sevishingni hohlayman  .",
-            yashirinVideo: "rasmlar/sanisevaman.mp4",
+            yashirinXat: "Bu yergacha yetib kelganing uchun rahmat. Sen uchun yana bir narsa tayyorlab qo'ygandim — pastdagi videoni albatta ko'r.",
+            yashirinVideo: "rasmlar/sirli.mp4",
 
             // Har kuni o'zgarib turadigan kichik gaplar (yakuniy sahifada, qaytib kirganda ham chiqaveradi).
             kundalikGaplar: [
@@ -1115,19 +1121,19 @@
                 src: "rasmlarr/1.png",
                 izoh: ""
             }, {
-                src: "rasmlar/2.jpg",
+                src: "rasmlarr/2.jpg",
                 izoh: "?"
             }, {
-                src: "rasmlar/3.jpg",
+                src: "rasmlarr/3.jpg",
                 izoh: ""
             }, {
-                src: "rasmlar/4.jpg",
+                src: "rasmlarr/4.jpg",
                 izoh: ""
             }, {
-                src: "rasmlar/5.jpg",
+                src: "rasmlarr/5.jpg",
                 izoh: ""
             }, {
-                src: "rasmlar/6.jpg",
+                src: "rasmlarr/6.jpg",
                 izoh: ""
             }],
 
@@ -1337,20 +1343,21 @@
         }
 
         /* ---------- Yakunlanganlik (test bir marta o'tilgach, doim oxirgi sahifa ochiladi) ---------- */
-        const DKEY = "sevgi_yakun_v" + CONFIG.version;
+        const GKEY = "sevgi_rasmlar_v" + CONFIG.version;
 
-        function saveDone() {
+        function saveGallery() {
             try {
-                localStorage.setItem(DKEY, JSON.stringify({
+                localStorage.setItem(GKEY, JSON.stringify({
                     herName,
-                    unlocked
+                    unlocked,
+                    askAnswered
                 }));
             } catch (e) {}
         }
 
-        function loadDone() {
+        function loadGallery() {
             try {
-                return JSON.parse(localStorage.getItem(DKEY));
+                return JSON.parse(localStorage.getItem(GKEY));
             } catch (e) {
                 return null;
             }
@@ -1428,7 +1435,8 @@
         let i = 0,
             right = 0,
             locked = false,
-            herName = CONFIG.ism || "";
+            herName = CONFIG.ism || "",
+            askAnswered = false;
         const unlocked = [];
         const total = CONFIG.savollar.length;
 
@@ -1443,56 +1451,48 @@
         $("proposeNo").textContent = CONFIG.turmushYoq;
         $("weddingConfirm").textContent = CONFIG.sanaBelgilashTugma;
 
+        /* Avval papka/galereya holatini tiklaymiz (agar oldin ochilgan bo'lsa) */
+        const galleryData = loadGallery();
+        if (galleryData) {
+            herName = galleryData.herName || herName;
+            unlocked.push(...(galleryData.unlocked || []));
+            askAnswered = !!galleryData.askAnswered;
+            $("folderWrap").hidden = false;
+            $("endTitle").textContent = CONFIG.yutdiSarlavha;
+            $("endText").textContent = CONFIG.yutdiMatn;
+            $("secretBox").hidden = true;
+            $("retry").hidden = true;
+            openFolder();
+        }
+
         const weddingSaved = loadWedding();
         if (weddingSaved) {
             /* Turmush sanasi belgilangan — endi doim to'g'ridan-to'g'ri shu oyna ochiladi */
             track("🔁 Qaytib keldi (orqaga sanoq)");
             startCountdown(weddingSaved);
+        } else if (galleryData) {
+            /* Test topshirilgan, lekin hali to'y sanasi yo'q — doim rasmlar/xatlar oynasi ochiladi */
+            track("🔁 Qaytib keldi (rasmlar va xatlar)");
+            show("s-end");
         } else {
-            const doneData = loadDone();
-            if (doneData) {
-                /* Avval to'liq yakunlagan — endi doim to'g'ridan-to'g'ri oxirgi sahifa ochiladi */
-                herName = doneData.herName || herName;
-                unlocked.push(...(doneData.unlocked || []));
-                track("🔁 Qaytib keldi (avval yakunlagan)");
-                $("s-yay").insertBefore($("folderWrap"), $("replyBox"));
-                $("s-yay").insertBefore($("gallery"), $("replyBox"));
-                $("folderWrap").hidden = false;
-                $("hint").style.display = "";
-                $("folder").classList.remove("open");
-                $("gallery").classList.remove("on");
-                $("yayTitle").textContent = CONFIG.yakunSarlavha;
-                $("yayText").textContent = CONFIG.yakunMatn;
-                $("replyLabel").textContent = CONFIG.javobYorligi;
-                $("moodLabel").textContent = CONFIG.moodYorligi;
-                renderDaily();
-                const days2 = daysCounter(CONFIG.boshlanganSana);
-                $("counterBox2").hidden = days2 === null;
-                if (days2 !== null) {
-                    $("counterN2").textContent = days2;
-                    $("counterLbl2").textContent = CONFIG.hisoblagichYorligi;
-                }
-                show("s-yay");
-            } else {
-                const saved = loadProgress();
-                if (saved && saved.i > 0 && saved.i < total) {
-                    const box = $("resumeBox");
-                    box.innerHTML = "";
-                    const p = document.createElement("p");
-                    p.className = "lead";
-                    p.textContent = "Oldingi urinishingiz saqlangan edi.";
-                    const b = document.createElement("button");
-                    b.className = "btn ghost";
-                    b.textContent = "Davom ettirish";
-                    b.onclick = () => {
-                        i = saved.i;
-                        right = saved.right;
-                        unlocked.push(...saved.unlocked);
-                        herName = saved.herName || herName;
-                        startQuiz(false);
-                    };
-                    box.append(p, b);
-                }
+            const saved = loadProgress();
+            if (saved && saved.i > 0 && saved.i < total) {
+                const box = $("resumeBox");
+                box.innerHTML = "";
+                const p = document.createElement("p");
+                p.className = "lead";
+                p.textContent = "Oldingi urinishingiz saqlangan edi.";
+                const b = document.createElement("button");
+                b.className = "btn ghost";
+                b.textContent = "Davom ettirish";
+                b.onclick = () => {
+                    i = saved.i;
+                    right = saved.right;
+                    unlocked.push(...saved.unlocked);
+                    herName = saved.herName || herName;
+                    startQuiz(false);
+                };
+                box.append(p, b);
             }
         }
 
@@ -1656,6 +1656,7 @@
             $("endText").textContent = won ? CONFIG.yutdiMatn : CONFIG.yutqazdiMatn;
             $("folderWrap").hidden = !won;
             $("retry").hidden = won;
+            if (won) saveGallery();
             $("secretBox").hidden = won || !CONFIG.sirliSoz;
             $("secretHint").textContent = CONFIG.sirliIshora;
             $("secretIn").value = "";
@@ -1683,6 +1684,7 @@
                 $("endTitle").textContent = CONFIG.yutdiSarlavha;
                 $("endText").textContent = CONFIG.yutdiMatn;
                 $("folderWrap").hidden = false;
+                saveGallery();
             } else {
                 $("secretFb").textContent = "Yo'q, yana o'ylab ko'r 🙈";
             }
@@ -1694,10 +1696,10 @@
 
         /* ---------- Papka va galereya ---------- */
         const seen = new Set();
-        $("folder").onclick = () => {
+
+        function openFolder() {
             $("folder").classList.add("open");
             $("hint").style.display = "none";
-            track("📂 Papkani ochdi");
             const g = $("grid");
             g.innerHTML = "";
             CONFIG.rasmlar.forEach((r, idx) => {
@@ -1762,6 +1764,10 @@
                     block: "start"
                 });
             }, 450);
+        }
+        $("folder").onclick = () => {
+            track("📂 Papkani ochdi");
+            openFolder();
         };
         $("lb").onclick = () => $("lb").classList.remove("on");
         document.addEventListener("keydown", e => {
@@ -1786,6 +1792,7 @@
             $("vaultTitle").textContent = CONFIG.yashirinSarlavha;
             $("vaultNote").textContent = CONFIG.yashirinXat;
             $("vaultVideo").src = CONFIG.yashirinVideo;
+            $("vaultToYay").hidden = !askAnswered;
             show("s-vault");
         }
         $("vaultBtn").onclick = tryVault;
@@ -1799,6 +1806,10 @@
                 behavior: "smooth",
                 block: "start"
             });
+        };
+        $("vaultToYay").onclick = () => {
+            $("vaultVideo").pause();
+            show("s-yay");
         };
 
         /* ---------- Nikoh taklifi va sana belgilash ---------- */
@@ -1824,9 +1835,21 @@
             saveWedding(val);
             startCountdown(val);
         };
+        $("countBack").onclick = () => {
+            show("s-end");
+            $("gallery").scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        };
+        $("askBack").onclick = () => show("s-end");
 
         /* ---------- Oxirgi savol: qochadigan «Yo'q» ---------- */
         $("toAsk").onclick = () => {
+            if (askAnswered) {
+                show("s-yay");
+                return;
+            }
             track("➡️ Oxirgi savolga o'tdi");
             $("askQ").textContent = CONFIG.oxirgiSavol;
             $("yes").textContent = CONFIG.haTugma;
@@ -1873,7 +1896,8 @@
 
         function sayYes() {
             track("💖💖💖 «" + CONFIG.haTugma + "» tugmasini BOSDI!");
-            saveDone();
+            askAnswered = true;
+            saveGallery();
             flush(false);
             sndWin();
             $("yayTitle").textContent = CONFIG.yakunSarlavha;
@@ -1882,6 +1906,7 @@
             $("moodLabel").textContent = CONFIG.moodYorligi;
             $("replySent").textContent = "";
             $("replyText").value = "";
+            $("yayBack").hidden = false;
             renderDaily();
             const days = daysCounter(CONFIG.boshlanganSana);
             $("counterBox2").hidden = days === null;
@@ -1893,6 +1918,7 @@
             confetti();
         }
         yes.onclick = sayYes;
+        $("yayBack").onclick = () => show("s-end");
 
         /* ---------- Kayfiyat slayderi ---------- */
         const moodEmojis = ["😢", "😕", "🙂", "😍", "🥰"];

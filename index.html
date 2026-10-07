@@ -97,8 +97,10 @@
 
     <div class="composer-wrap">
       <div class="preview" id="preview">
-        <span>📎</span><span class="preview-name" id="previewName"></span>
-        <button class="icon-btn" id="clearFile">✕</button>
+        <span id="previewIcon">📎</span>
+        <div class="preview-name" id="previewName"></div>
+        <audio id="previewAudio" controls style="display:none;max-width:260px;width:100%;"></audio>
+        <button class="icon-btn" id="clearFile" title="Bekor qilish">✕</button>
       </div>
       <div class="composer">
         <div class="attach">
@@ -132,9 +134,12 @@ const cameraInput = document.getElementById("cameraInput");
 const videoInput = document.getElementById("videoInput");
 const preview = document.getElementById("preview");
 const previewName = document.getElementById("previewName");
+const previewAudio = document.getElementById("previewAudio");
+const previewIcon = document.getElementById("previewIcon");
 const empty = document.getElementById("empty");
 const lastMessage = document.getElementById("lastMessage");
 const listTime = document.getElementById("listTime");
+const status = document.getElementById("status");
 
 let selectedFile = null;
 let recorder = null;
@@ -175,16 +180,37 @@ function addBubble({text="",file=null,mine=true}){
 
 function chooseFile(file){
   if(!file) return;
+
   selectedFile=file;
   previewName.textContent=file.name || "Ovozli xabar";
   preview.classList.add("show");
+
+  if(file.type.startsWith("audio/")){
+    previewIcon.textContent="🎤";
+    previewAudio.src=URL.createObjectURL(file);
+    previewAudio.style.display="block";
+  }else{
+    previewIcon.textContent="📎";
+    previewAudio.removeAttribute("src");
+    previewAudio.style.display="none";
+  }
 }
+
 function clearFile(){
+  if(previewAudio.src) URL.revokeObjectURL(previewAudio.src);
+
   selectedFile=null;
   preview.classList.remove("show");
   previewName.textContent="";
-  fileInput.value=cameraInput.value=videoInput.value="";
+  previewIcon.textContent="📎";
+  previewAudio.removeAttribute("src");
+  previewAudio.style.display="none";
+
+  fileInput.value="";
+  cameraInput.value="";
+  videoInput.value="";
 }
+
 async function send(){
   const text=message.value.trim();
   if(!text && !selectedFile) return;
@@ -201,6 +227,7 @@ async function send(){
     message.value="";
     clearFile();
     message.style.height="44px";
+    status.textContent="kutib turimman";
   }catch(e){
     alert("Xabar yuborilmadi. Internet yoki Worker sozlamalarini tekshiring.");
     console.error(e);
@@ -269,6 +296,8 @@ micBtn.onclick=async()=>{
     recording=true;
     micBtn.textContent="⏹";
     micBtn.title="Yozuvni to‘xtatish";
+    micBtn.style.background="#d93025";
+    status.textContent="ovoz yozilmoqda...";
     recorder.ondataavailable=e=>{if(e.data && e.data.size>0) chunks.push(e.data);};
     recorder.onerror=e=>{
       console.error("MediaRecorder error:",e);
@@ -287,13 +316,18 @@ micBtn.onclick=async()=>{
       recording=false;
       micBtn.textContent="🎤";
       micBtn.title="Ovoz yozish";
+      micBtn.style.background="";
       if(!chunks.length){
         alert("Ovoz yozilmadi. Qaytadan urinib ko‘ring.");
         return;
       }
       const file=new File(chunks,`voice-${Date.now()}.${ext}`,{type:mime});
+
+      // Ovoz bu yerda YUBORILMAYDI.
+      // Faqat previewga chiqadi. Foydalanuvchi eshitib,
+      // keyin ➤ tugmasini bosgandagina yuboriladi.
       chooseFile(file);
-      await send();
+      status.textContent="ovoz tayyor — eshitib ko‘ring";
     };
     recorder.start(250);
   }catch(e){
@@ -309,6 +343,8 @@ micBtn.onclick=async()=>{
     recording=false;
     micBtn.textContent="🎤";
     micBtn.title="Ovoz yozish";
+    micBtn.style.background="";
+    status.textContent="kutib turimman";
   }
 };
 listTime.textContent=timeNow();

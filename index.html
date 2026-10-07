@@ -222,30 +222,94 @@ document.getElementById("clearFile").onclick=clearFile;
 [fileInput,cameraInput,videoInput].forEach(i=>i.onchange=()=>chooseFile(i.files[0]));
 document.getElementById("conversation").onclick=()=>app.classList.add("chat-open");
 document.getElementById("back").onclick=()=>app.classList.remove("chat-open");
-document.getElementById("newChat").onclick=()=>{messages.innerHTML="";messages.appendChild(empty);empty.style.display="block";lastMessage.textContent="Muloqotni boshlang";};
-document.getElementById("search").oninput=e=>{
-  const q=e.target.value.toLowerCase();
-  document.getElementById("conversation").style.display=("admin".includes(q)||!q)?"flex":"none";
-};
+const newChat=document.getElementById("newChat");
+if(newChat){
+  newChat.onclick=()=>{
+    messages.innerHTML="";
+    messages.appendChild(empty);
+    empty.style.display="block";
+    lastMessage.textContent="Muloqotni boshlang";
+  };
+}
+const search=document.getElementById("search");
+if(search){
+  search.oninput=e=>{
+    const q=e.target.value.toLowerCase();
+    document.getElementById("conversation").style.display=("admin".includes(q)||!q)?"flex":"none";
+  };
+}
 
 micBtn.onclick=async()=>{
-  if(recording){recorder.stop();return;}
+  if(recording){
+    if(recorder && recorder.state!=="inactive") recorder.stop();
+    return;
+  }
+
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    alert("Bu brauzer mikrofon yozishni qo‘llab-quvvatlamaydi.");
+    return;
+  }
+
+  if(!window.MediaRecorder){
+    alert("Bu brauzer audio yozishni qo‘llab-quvvatlamaydi.");
+    return;
+  }
+
   try{
     const stream=await navigator.mediaDevices.getUserMedia({audio:true});
-    const preferred=MediaRecorder.isTypeSupported("audio/ogg;codecs=opus")?"audio/ogg;codecs=opus":
-                    MediaRecorder.isTypeSupported("audio/webm;codecs=opus")?"audio/webm;codecs=opus":"audio/webm";
-    recorder=new MediaRecorder(stream,{mimeType:preferred});
-    chunks=[]; recording=true; micBtn.textContent="⏹"; micBtn.title="To‘xtatish";
-    recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};
+    const types=[
+      "audio/webm;codecs=opus",
+      "audio/webm",
+      "audio/ogg;codecs=opus",
+      "audio/ogg"
+    ];
+    const supported=types.find(type=>MediaRecorder.isTypeSupported(type));
+    recorder=supported ? new MediaRecorder(stream,{mimeType:supported}) : new MediaRecorder(stream);
+    chunks=[];
+    recording=true;
+    micBtn.textContent="⏹";
+    micBtn.title="Yozuvni to‘xtatish";
+    recorder.ondataavailable=e=>{if(e.data && e.data.size>0) chunks.push(e.data);};
+    recorder.onerror=e=>{
+      console.error("MediaRecorder error:",e);
+      stream.getTracks().forEach(t=>t.stop());
+      recording=false;
+      micBtn.textContent="🎤";
+      micBtn.title="Ovoz yozish";
+      alert("Ovoz yozishda xatolik yuz berdi.");
+    };
     recorder.onstop=async()=>{
       stream.getTracks().forEach(t=>t.stop());
-      const ext=preferred.includes("ogg")?"ogg":"webm";
-      chooseFile(new File(chunks,`voice-${Date.now()}.${ext}`,{type:preferred.split(";")[0]}));
-      recording=false; micBtn.textContent="🎤"; micBtn.title="Ovoz yozish";
+      const actualType=recorder.mimeType || supported || "audio/webm";
+      const isOgg=actualType.toLowerCase().includes("ogg");
+      const ext=isOgg ? "ogg" : "webm";
+      const mime=actualType.split(";")[0];
+      recording=false;
+      micBtn.textContent="🎤";
+      micBtn.title="Ovoz yozish";
+      if(!chunks.length){
+        alert("Ovoz yozilmadi. Qaytadan urinib ko‘ring.");
+        return;
+      }
+      const file=new File(chunks,`voice-${Date.now()}.${ext}`,{type:mime});
+      chooseFile(file);
       await send();
     };
-    recorder.start();
-  }catch(e){alert("Mikrofonga ruxsat berilmadi.");console.error(e)}
+    recorder.start(250);
+  }catch(e){
+    console.error("Microphone error:",e);
+    if(e.name==="NotAllowedError" || e.name==="PermissionDeniedError")
+      alert("Mikrofonga ruxsat berilmagan. Chrome sayt sozlamalaridan Microphone → Allow qiling.");
+    else if(e.name==="NotFoundError")
+      alert("Mikrofon topilmadi. Kompyuterda mikrofon ulanganini tekshiring.");
+    else if(e.name==="NotReadableError")
+      alert("Mikrofon boshqa dastur tomonidan ishlatilmoqda.");
+    else
+      alert("Mikrofon ishlamadi: "+(e.message || e.name));
+    recording=false;
+    micBtn.textContent="🎤";
+    micBtn.title="Ovoz yozish";
+  }
 };
 listTime.textContent=timeNow();
 </script>

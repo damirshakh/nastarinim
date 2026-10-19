@@ -14,8 +14,8 @@
 body{background:radial-gradient(ellipse at 20% 0%,#ece9e3 0,transparent 36%),var(--bg);color:var(--ink);letter-spacing:-.01em}
 button{transition:background .18s ease,color .18s ease,transform .18s ease,box-shadow .18s ease}
 .shell{height:100dvh;max-width:1540px;padding:28px}
-.app{border:1px solid #e8e5e1;border-radius:25px;box-shadow:0 28px 90px #30393412;grid-template-columns:310px minmax(0,1fr)}
-.side{background:#fff}
+.app{height:100%;grid-template-rows:minmax(0,1fr);border:1px solid #e8e5e1;border-radius:25px;box-shadow:0 28px 90px #30393412;grid-template-columns:310px minmax(0,1fr)}
+.side{min-height:0;background:#fff}
 .brandbar{height:78px;padding:0 21px}
 .brand{font-size:17px;letter-spacing:-.4px}
 .logo{border-radius:14px;background:linear-gradient(145deg,#548a7c,#315d53);box-shadow:0 7px 16px #386c6130}
@@ -34,14 +34,14 @@ button{transition:background .18s ease,color .18s ease,transform .18s ease,box-s
 .avatar.you{background:linear-gradient(145deg,#82998e,#536f64);box-shadow:none}
 .user-name{font-size:12px}
 .user-sub{font-size:10px}
-.main{background:var(--chat)}
+.main{min-height:0;background:var(--chat)}
 .topbar{height:76px;padding:0 27px;gap:12px;background:#fff;border-color:#eeece8}
 .topbar>.avatar{width:42px;height:42px}
 .topname{font-size:14px;font-weight:720}
 .topstatus{font-size:11px;color:#78837e}
 .actions .icon{border:1px solid transparent}
 .actions .icon:hover{border-color:#eeece8;background:#f8f8f6}
-.feed{padding:30px clamp(18px,6vw,100px);gap:12px;background-color:#f5f4f1;background-image:radial-gradient(#d7d9d3 0.65px,transparent .65px);background-size:20px 20px}
+.feed{min-height:0;padding:30px clamp(18px,6vw,100px);gap:12px;background-color:#f5f4f1;background-image:radial-gradient(#d7d9d3 0.65px,transparent .65px);background-size:20px 20px}
 .day.hidden{display:none}.day{padding:5px 12px;border:1px solid #ebe9e4;border-radius:999px;background:#ffffffed;color:#818a86;font-size:10px;letter-spacing:.035em;box-shadow:0 2px 8px #1b241a08}
 .welcome{width:min(400px,88%);margin:auto;padding:27px 29px;border:1px solid #ebe9e4;border-radius:21px;background:#fff;box-shadow:0 12px 36px #33362e0b}
 .welcome-icon{width:54px;height:54px;margin:0 auto 15px;border-radius:18px;background:#eef3ef;display:grid;place-items:center;font-size:25px}

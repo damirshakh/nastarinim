@@ -1,353 +1,44 @@
 <!doctype html>
-<html lang="uz">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#0b141a">
-  <title>Messenger</title>
-  <style>
-    *{box-sizing:border-box}
-    html,body{margin:0;width:100%;height:100%;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-    body{background:#0b141a;color:#e9edef;overflow:hidden}
-    button,input{font:inherit}
-    button{border:0;cursor:pointer}
-    .app{height:100dvh;display:flex;background:#111b21}
-    .sidebar{width:340px;min-width:300px;border-right:1px solid #26343c;background:#111b21;display:flex;flex-direction:column}
-    .side-head{height:68px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;background:#202c33}
-    .brand{font-size:20px;font-weight:700}
-    .icon-btn{width:42px;height:42px;border-radius:50%;background:transparent;color:#aebac1;font-size:21px}
-    .icon-btn:hover{background:#2a3942}
-    .search{padding:10px 12px;background:#111b21}
-    .search-box{height:42px;border-radius:9px;background:#202c33;display:flex;align-items:center;padding:0 13px;color:#8696a0}
-    .search-box input{width:100%;border:0;outline:0;background:transparent;color:#e9edef;margin-left:9px}
-    .conversation{padding:14px 16px;display:flex;align-items:center;gap:12px;background:#202c33;border-bottom:1px solid #26343c}
-    .avatar{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:#128c7e;font-weight:700;font-size:18px;flex:none}
-    .conv-info{min-width:0;flex:1}
-    .conv-top{display:flex;justify-content:space-between;gap:8px}
-    .conv-name{font-weight:600}
-    .time{font-size:12px;color:#8696a0}
-    .last{font-size:13px;color:#8696a0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:4px}
-    .chat{flex:1;min-width:0;display:flex;flex-direction:column;background:#0b141a}
-    .chat-head{height:68px;padding:10px 18px;display:flex;align-items:center;gap:12px;background:#202c33;border-bottom:1px solid #26343c}
-    .head-info{flex:1}
-    .head-name{font-weight:650}
-    .status{font-size:12px;color:#8696a0;margin-top:3px}
-    .messages{flex:1;overflow-y:auto;padding:24px clamp(14px,5vw,80px);display:flex;flex-direction:column;gap:7px;background:
-      radial-gradient(circle at 20% 20%,rgba(20,50,60,.12),transparent 25%),
-      radial-gradient(circle at 80% 70%,rgba(20,50,60,.12),transparent 25%),#0b141a}
-    .empty{text-align:center;color:#8696a0;margin:auto;background:#202c33;padding:10px 16px;border-radius:9px;font-size:13px}
-    .bubble{max-width:min(72%,560px);padding:8px 10px 6px;border-radius:9px;background:#202c33;align-self:flex-start;box-shadow:0 1px 1px rgba(0,0,0,.15)}
-    .bubble.mine{align-self:flex-end;background:#005c4b}
-    .bubble-text{white-space:pre-wrap;word-break:break-word;font-size:14.5px;line-height:1.42}
-    .bubble img,.bubble video{display:block;max-width:100%;max-height:340px;border-radius:7px;margin-bottom:5px}
-    .bubble audio{width:250px;max-width:100%}
-    .bubble-meta{text-align:right;color:#b7c5cb;font-size:10px;margin-top:3px}
-    .composer-wrap{padding:10px 14px;background:#202c33}
-    .preview{display:none;padding:8px 10px;margin-bottom:8px;background:#111b21;border-radius:9px;align-items:center;gap:10px}
-    .preview.show{display:flex}
-    .preview-name{flex:1;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-    .composer{display:flex;align-items:flex-end;gap:8px}
-    .attach{display:flex;gap:2px}
-    .message-input{flex:1;min-height:44px;max-height:130px;resize:none;border:0;outline:0;border-radius:10px;background:#2a3942;color:#e9edef;padding:12px 14px}
-    .message-input::placeholder{color:#8696a0}
-    .send{width:46px;height:46px;border-radius:50%;background:#00a884;color:white;font-size:20px}
-    .send:disabled{opacity:.45;cursor:not-allowed}
-    .file-input{display:none}
-    .mobile-back{display:none}
-    @media(max-width:760px){
-      .sidebar{width:100%;min-width:0}
-      .chat{display:none}
-      .app.chat-open .sidebar{display:none}
-      .app.chat-open .chat{display:flex}
-      .mobile-back{display:block}
-      .messages{padding:16px 10px}
-      .bubble{max-width:86%}
-    }
-  </style>
-</head>
+<html lang="uz"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f7f8fa">
+<title>Nastarinim — shaxsiy messenjer</title>
+<style>
+:root{--bg:#f4f6f8;--panel:#fff;--line:#e9edf1;--ink:#17212b;--muted:#81909d;--green:#168c72;--green2:#e6f5ef;--chat:#eef3f0;--shadow:0 18px 60px #22304412}*{box-sizing:border-box}body{margin:0;background:var(--bg);font:14px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink)}button,input,textarea{font:inherit}button{border:0;cursor:pointer}.shell{height:100dvh;max-width:1500px;margin:auto;padding:22px;display:flex}.app{width:100%;min-height:0;background:var(--panel);border:1px solid #e9edf1;border-radius:22px;box-shadow:var(--shadow);display:grid;grid-template-columns:330px minmax(0,1fr);overflow:hidden}.side{border-right:1px solid var(--line);display:flex;flex-direction:column;min-width:0}.brandbar{height:78px;padding:0 22px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:11px;font-weight:750;font-size:18px;letter-spacing:-.3px}.logo{width:38px;height:38px;border-radius:13px;background:linear-gradient(145deg,#34b89a,#127d68);display:grid;place-items:center;color:white;font-size:20px;box-shadow:0 6px 14px #168c7230}.icon{width:38px;height:38px;border-radius:12px;background:transparent;color:#6d7b87;font-size:18px;display:grid;place-items:center}.icon:hover{background:#f3f6f7}.search{margin:18px 16px 14px;height:42px;border-radius:12px;background:#f4f6f8;display:flex;align-items:center;gap:9px;padding:0 12px;color:#84919c}.search input{width:100%;outline:none;border:0;background:transparent;color:var(--ink)}.sectionlabel{padding:0 20px 9px;color:#9aa5ae;font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:700}.conversation{margin:0 9px;padding:12px 11px;display:flex;gap:12px;align-items:center;border-radius:14px;background:#eff8f5;cursor:pointer}.avatar{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;flex:none;color:#fff;font-size:21px;background:linear-gradient(135deg,#56c6a9,#13836c)}.avatar.you{width:34px;height:34px;font-size:14px;background:linear-gradient(145deg,#7587d7,#485cb6)}.convinfo{flex:1;min-width:0}.convtop{display:flex;align-items:center;justify-content:space-between;gap:8px}.convname{font-weight:680}.time{font-size:11px;color:#99a4ae}.last{font-size:12px;color:#87949e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:3px}.badge{width:7px;height:7px;background:#3fba8f;border-radius:50%}.sidebottom{margin-top:auto;padding:15px;border-top:1px solid var(--line);display:flex;align-items:center;gap:10px}.user-meta{flex:1}.user-name{font-size:13px;font-weight:650}.user-sub{font-size:11px;color:#99a4ae}.main{min-width:0;display:flex;flex-direction:column;background:var(--chat)}.topbar{height:78px;background:#fff;border-bottom:1px solid var(--line);padding:0 24px;display:flex;align-items:center;gap:13px}.topmeta{flex:1}.topname{font-size:15px;font-weight:700}.topstatus{display:flex;align-items:center;gap:6px;color:#87949e;font-size:12px;margin-top:3px}.actions{display:flex;gap:4px}.feed{flex:1;overflow:auto;padding:28px clamp(20px,6vw,92px);display:flex;flex-direction:column;gap:13px;background-color:#f3f6f4;background-image:radial-gradient(#dfe9e4 0.7px,transparent .7px);background-size:19px 19px;scroll-behavior:smooth}.day{align-self:center;padding:5px 12px;border:1px solid #e4eae6;border-radius:99px;background:#ffffffd9;color:#84918b;font-size:11px;margin:2px 0 6px}.welcome{max-width:420px;align-self:center;margin:auto;background:#ffffffed;border:1px solid #e8eeea;padding:22px 25px;border-radius:18px;text-align:center;box-shadow:0 6px 22px #18352b0a}.welcome-icon{font-size:30px}.welcome h2{font-size:16px;margin:8px 0 5px}.welcome p{font-size:12px;color:#87949e;margin:0}.bubble{max-width:min(74%,560px);padding:10px 12px 7px;border-radius:16px 16px 16px 5px;background:#fff;box-shadow:0 2px 5px #1d342608;border:1px solid #e9eeeb;align-self:flex-start;white-space:pre-wrap;overflow-wrap:anywhere}.bubble.mine{align-self:flex-end;border-radius:16px 16px 5px 16px;background:#dcf4e8;border-color:#d5eee0}.bubble .media{display:block;max-width:100%;max-height:340px;border-radius:10px;margin:0 0 6px}.bubble audio{max-width:100%;width:260px}.bubble a{color:#167d68;text-decoration:none;font-weight:600}.meta{font-size:10px;color:#96a29c;text-align:right;margin-top:4px}.composer-wrap{padding:14px 22px 18px;background:#fff;border-top:1px solid var(--line)}.preview{display:none;align-items:center;gap:9px;background:#f5f8f6;border:1px solid var(--line);padding:8px 10px;border-radius:12px;margin-bottom:10px}.preview.show{display:flex}.preview-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#6f7d77;font-size:12px}.composer{display:flex;gap:8px;align-items:flex-end}.compose-icon{flex:none;width:42px;height:44px;border-radius:13px;background:transparent;color:#73817c;font-size:19px}.compose-icon:hover{background:#f2f6f4}.entry{flex:1;min-height:44px;max-height:130px;resize:none;border:1px solid #e8eeea;border-radius:14px;background:#f7f9f8;padding:11px 14px;outline:none;color:var(--ink)}.entry:focus{border-color:#7ac8b0;background:#fff}.entry::placeholder{color:#a6b1ac}.send{width:44px;height:44px;border-radius:14px;background:var(--green);color:white;font-size:19px;box-shadow:0 5px 13px #168c7230}.send:hover{background:#117b65}.send:disabled{opacity:.55}.hint{text-align:center;color:#a7b1ad;font-size:10px;margin-top:8px}.hidden{display:none}.auth{position:fixed;inset:0;background:#12241ed6;display:grid;place-items:center;padding:20px;z-index:10}.authcard{width:min(390px,100%);background:#fff;border-radius:22px;padding:28px;box-shadow:0 25px 90px #06130f55}.authcard .logo{margin:0 auto 16px;width:48px;height:48px}.authcard h1{text-align:center;font-size:20px;margin:0 0 7px}.authcard p{text-align:center;color:#84918c;font-size:13px;margin:0 0 22px}.authcard input{width:100%;height:46px;border:1px solid #e2e9e5;border-radius:12px;padding:0 13px;outline:none}.authcard input:focus{border-color:#54b69c}.authcard button{height:45px;width:100%;margin-top:11px;border-radius:12px;background:var(--green);color:white;font-weight:650}.authhint{text-align:center;color:#a1aaa6;font-size:10px;margin-top:12px}.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);padding:10px 16px;border-radius:12px;background:#1e2c28;color:white;box-shadow:var(--shadow);z-index:20;display:none}.mobileback{display:none}
+@media(max-width:760px){.shell{padding:0}.app{border:0;border-radius:0;grid-template-columns:1fr}.side{display:flex}.main{display:none}.app.open .side{display:none}.app.open .main{display:flex}.mobileback{display:grid}.feed{padding:18px 12px}.bubble{max-width:88%}.topbar{padding:0 12px;height:68px}.composer-wrap{padding:10px 9px calc(11px + env(safe-area-inset-bottom))}.actions .icon:nth-child(2){display:none}.brandbar{height:68px}}
+</style></head>
 <body>
-<div class="app" id="app">
-  <aside class="sidebar">
-    <div class="side-head">
-      <div class="brand">Nastarinim</div>
-  
-    </div> 
-    <div class="conversation" id="conversation">
-      <div class="avatar">🪐</div>
-      <div class="conv-info">
-        <div class="conv-top"><span class="conv-name">Hayotim</span><span class="time" id="listTime"></span></div>
-        <div class="last" id="lastMessage">Muloqotni boshlang</div>
-      </div>
-    </div>
-  </aside>
-
-  <main class="chat">
-    <header class="chat-head">
-      <button class="icon-btn mobile-back" id="back">‹</button>
-      <div class="avatar">🪐</div>
-      <div class="head-info">
-        <div class="head-name">Hayotim</div>
-        <div class="status" id="status">kutib turimman</div>
-      </div>
-    </header>
-
-    <section class="messages" id="messages">
-      <div class="empty" id="empty">Video yoki Golos tashla jonim </div>
-    </section>
-
-    <div class="composer-wrap">
-      <div class="preview" id="preview">
-        <span id="previewIcon">📎</span>
-        <div class="preview-name" id="previewName"></div>
-        <audio id="previewAudio" controls style="display:none;max-width:260px;width:100%;"></audio>
-        <button class="icon-btn" id="clearFile" title="Bekor qilish">✕</button>
-      </div>
-      <div class="composer">
-        <div class="attach">
-          <button class="icon-btn" id="fileBtn" title="Rasm yoki fayl">📎</button>
-          <button class="icon-btn" id="cameraBtn" title="Kamera">📷</button>
-          <button class="icon-btn" id="videoBtn" title="Video">🎥</button>
-        </div>
-        <textarea class="message-input" id="message" rows="1" placeholder="Xabar yozing..."></textarea>
-        <button class="send" id="micBtn" title="Ovoz yozish">🎤</button>
-        <button class="send" id="sendBtn" title="Yuborish">➤</button>
-      </div>
-      <input class="file-input" id="fileInput" type="file" accept="image/*,video/*,audio/*,.pdf,.doc,.docx,.zip">
-      <input class="file-input" id="cameraInput" type="file" accept="image/*" capture="environment">
-      <input class="file-input" id="videoInput" type="file" accept="video/*" capture="environment">
-    </div>
-  </main>
-</div>
-
+<div class="shell"><div class="app" id="app">
+<aside class="side"><div class="brandbar"><div class="brand"><div class="logo">✦</div>Nastarinim</div><button class="icon" id="lockBtn" title="Chiqish">↪</button></div>
+<label class="search">⌕ <input id="search" placeholder="Suhbatni qidiring" aria-label="Suhbatni qidiring"></label><div class="sectionlabel">Xabarlar</div>
+<div class="conversation" id="conversation"><div class="avatar">✿</div><div class="convinfo"><div class="convtop"><span class="convname" id="contactName">Hayotim</span><span class="time" id="listTime"></span></div><div class="last" id="lastMessage">Muloqotni boshlash uchun yozing</div></div><span class="badge"></span></div>
+<div class="sidebottom"><div class="avatar you">S</div><div class="user-meta"><div class="user-name">Shaxsiy akkaunt</div><div class="user-sub">Faqat siz va yaqin insoningiz</div></div><span class="badge"></span></div></aside>
+<main class="main"><header class="topbar"><button class="icon mobileback" id="back">‹</button><div class="avatar">✿</div><div class="topmeta"><div class="topname" id="headerName">Hayotim</div><div class="topstatus"><span class="badge"></span><span id="status">Ulanmoqda...</span></div></div><div class="actions"><button class="icon" title="Ovoz yozish" id="topMic">♩</button><button class="icon" title="Suhbat maʼlumoti" id="infoBtn">ⓘ</button></div></header>
+<section class="feed" id="feed"><div class="day">BUGUN</div><div class="welcome" id="welcome"><div class="welcome-icon">💬</div><h2>Shaxsiy suhbat</h2><p>Xabarlaringiz bevosita suhbatdoshingizning Telegram’iga yetkaziladi. U javob yozganda shu yerda paydo bo‘ladi.</p></div></section>
+<div class="composer-wrap"><div class="preview" id="preview"><span id="previewIcon">📎</span><div class="preview-name" id="previewName"></div><audio id="previewAudio" controls="" class="hidden"></audio><button class="icon" id="clearFile" aria-label="Faylni olib tashlash">×</button></div><div class="composer"><button class="compose-icon" id="fileBtn" title="Fayl biriktirish">＋</button><input class="hidden" type="file" id="fileInput" accept="image/*,video/*,audio/*,.pdf,.doc,.docx,.zip,.txt"><input class="hidden" type="file" id="cameraInput" accept="image/*" capture="environment"><textarea class="entry" id="message" rows="1" placeholder="Xabar yozing… (Enter — yuborish)"></textarea><button class="compose-icon" id="micBtn" title="Ovoz yozish">🎙</button><button class="send" id="sendBtn" title="Yuborish">➤</button></div><div class="hint">Enter — yuborish · Shift + Enter — yangi qator</div></div></main>
+</div></div>
+<div class="auth" id="auth"><form class="authcard" id="authForm"><div class="logo">✦</div><h1>Shaxsiy suhbatga kiring</h1><p>Bu suhbatga faqat ruxsat kalitiga ega odam kira oladi.</p><input id="accessKey" type="password" autocomplete="current-password" placeholder="Kirish kaliti" required=""><button type="submit">Xavfsiz kirish</button><div class="authhint">Kirish kaliti Cloudflare’da saqlanadi va suhbatni himoya qiladi.</div></form></div><div class="toast" id="toast"></div>
 <script>
-const CONFIG = {
-  workerUrl: "https://nastarinim.damirshokh.workers.dev"
-};
-
-const app = document.getElementById("app");
-const messages = document.getElementById("messages");
-const message = document.getElementById("message");
-const sendBtn = document.getElementById("sendBtn");
-const micBtn = document.getElementById("micBtn");
-const fileInput = document.getElementById("fileInput");
-const cameraInput = document.getElementById("cameraInput");
-const videoInput = document.getElementById("videoInput");
-const preview = document.getElementById("preview");
-const previewName = document.getElementById("previewName");
-const previewAudio = document.getElementById("previewAudio");
-const previewIcon = document.getElementById("previewIcon");
-const empty = document.getElementById("empty");
-const lastMessage = document.getElementById("lastMessage");
-const listTime = document.getElementById("listTime");
-const status = document.getElementById("status");
-
-let selectedFile = null;
-let recorder = null;
-let chunks = [];
-let recording = false;
-
-function timeNow(){
-  return new Date().toLocaleTimeString("uz-UZ",{hour:"2-digit",minute:"2-digit"});
-}
-function escapeHtml(s){
-  return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
-}
-function addBubble({text="",file=null,mine=true}){
-  empty.style.display="none";
-  const b=document.createElement("div");
-  b.className="bubble"+(mine?" mine":"");
-  if(file){
-    const url=URL.createObjectURL(file);
-    if(file.type.startsWith("image/")){
-      const img=document.createElement("img"); img.src=url; img.alt=file.name; b.appendChild(img);
-    }else if(file.type.startsWith("video/")){
-      const v=document.createElement("video"); v.src=url; v.controls=true; b.appendChild(v);
-    }else if(file.type.startsWith("audio/")){
-      const a=document.createElement("audio"); a.src=url; a.controls=true; b.appendChild(a);
-    }else{
-      const d=document.createElement("div"); d.textContent="📎 "+file.name; b.appendChild(d);
-    }
-  }
-  if(text){
-    const t=document.createElement("div"); t.className="bubble-text"; t.textContent=text; b.appendChild(t);
-  }
-  const meta=document.createElement("div"); meta.className="bubble-meta"; meta.textContent=timeNow()+"  ✓"; b.appendChild(meta);
-  messages.appendChild(b);
-  messages.scrollTop=messages.scrollHeight;
-  lastMessage.textContent=file ? ("📎 "+file.name) : text;
-  listTime.textContent=timeNow();
-}
-
-function chooseFile(file){
-  if(!file) return;
-
-  selectedFile=file;
-  previewName.textContent=file.name || "Ovozli xabar";
-  preview.classList.add("show");
-
-  if(file.type.startsWith("audio/")){
-    previewIcon.textContent="🎤";
-    previewAudio.src=URL.createObjectURL(file);
-    previewAudio.style.display="block";
-  }else{
-    previewIcon.textContent="📎";
-    previewAudio.removeAttribute("src");
-    previewAudio.style.display="none";
-  }
-}
-
-function clearFile(){
-  if(previewAudio.src) URL.revokeObjectURL(previewAudio.src);
-
-  selectedFile=null;
-  preview.classList.remove("show");
-  previewName.textContent="";
-  previewIcon.textContent="📎";
-  previewAudio.removeAttribute("src");
-  previewAudio.style.display="none";
-
-  fileInput.value="";
-  cameraInput.value="";
-  videoInput.value="";
-}
-
-async function send(){
-  const text=message.value.trim();
-  if(!text && !selectedFile) return;
-  sendBtn.disabled=true;
-  try{
-    addBubble({text,file:selectedFile});
-    const fd=new FormData();
-    fd.append("type", selectedFile ? (selectedFile.type.startsWith("image/")?"image":selectedFile.type.startsWith("video/")?"video":selectedFile.type.startsWith("audio/")?"voice":"file") : "text");
-    fd.append("name","Messenger foydalanuvchisi");
-    if(text) fd.append("message",text);
-    if(selectedFile) fd.append("file",selectedFile,selectedFile.name);
-    const r=await fetch(CONFIG.workerUrl,{method:"POST",body:fd});
-    if(!r.ok) throw new Error("Server: "+r.status);
-    message.value="";
-    clearFile();
-    message.style.height="44px";
-    status.textContent="kutib turimman";
-  }catch(e){
-    alert("Xabar yuborilmadi. Internet yoki Worker sozlamalarini tekshiring.");
-    console.error(e);
-  }finally{sendBtn.disabled=false}
-}
-
-message.addEventListener("input",()=>{
-  message.style.height="44px";
-  message.style.height=Math.min(message.scrollHeight,130)+"px";
-});
-message.addEventListener("keydown",e=>{
-  if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();send();}
-});
-document.getElementById("sendBtn").onclick=send;
-document.getElementById("fileBtn").onclick=()=>fileInput.click();
-document.getElementById("cameraBtn").onclick=()=>cameraInput.click();
-document.getElementById("videoBtn").onclick=()=>videoInput.click();
-document.getElementById("clearFile").onclick=clearFile;
-[fileInput,cameraInput,videoInput].forEach(i=>i.onchange=()=>chooseFile(i.files[0]));
-document.getElementById("conversation").onclick=()=>app.classList.add("chat-open");
-document.getElementById("back").onclick=()=>app.classList.remove("chat-open");
-const newChat=document.getElementById("newChat");
-if(newChat){
-  newChat.onclick=()=>{
-    messages.innerHTML="";
-    messages.appendChild(empty);
-    empty.style.display="block";
-    lastMessage.textContent="Muloqotni boshlang";
-  };
-}
-const search=document.getElementById("search");
-if(search){
-  search.oninput=e=>{
-    const q=e.target.value.toLowerCase();
-    document.getElementById("conversation").style.display=("admin".includes(q)||!q)?"flex":"none";
-  };
-}
-
-micBtn.onclick=async()=>{
-  if(recording){
-    if(recorder && recorder.state!=="inactive") recorder.stop();
-    return;
-  }
-
-  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
-    alert("Bu brauzer mikrofon yozishni qo‘llab-quvvatlamaydi.");
-    return;
-  }
-
-  if(!window.MediaRecorder){
-    alert("Bu brauzer audio yozishni qo‘llab-quvvatlamaydi.");
-    return;
-  }
-
-  try{
-    const stream=await navigator.mediaDevices.getUserMedia({audio:true});
-    const types=[
-      "audio/webm;codecs=opus",
-      "audio/webm",
-      "audio/ogg;codecs=opus",
-      "audio/ogg"
-    ];
-    const supported=types.find(type=>MediaRecorder.isTypeSupported(type));
-    recorder=supported ? new MediaRecorder(stream,{mimeType:supported}) : new MediaRecorder(stream);
-    chunks=[];
-    recording=true;
-    micBtn.textContent="⏹";
-    micBtn.title="Yozuvni to‘xtatish";
-    micBtn.style.background="#d93025";
-    status.textContent="ovoz yozilmoqda...";
-    recorder.ondataavailable=e=>{if(e.data && e.data.size>0) chunks.push(e.data);};
-    recorder.onerror=e=>{
-      console.error("MediaRecorder error:",e);
-      stream.getTracks().forEach(t=>t.stop());
-      recording=false;
-      micBtn.textContent="🎤";
-      micBtn.title="Ovoz yozish";
-      alert("Ovoz yozishda xatolik yuz berdi.");
-    };
-    recorder.onstop=async()=>{
-      stream.getTracks().forEach(t=>t.stop());
-      const actualType=recorder.mimeType || supported || "audio/webm";
-      const isOgg=actualType.toLowerCase().includes("ogg");
-      const ext=isOgg ? "ogg" : "webm";
-      const mime=actualType.split(";")[0];
-      recording=false;
-      micBtn.textContent="🎤";
-      micBtn.title="Ovoz yozish";
-      micBtn.style.background="";
-      if(!chunks.length){
-        alert("Ovoz yozilmadi. Qaytadan urinib ko‘ring.");
-        return;
-      }
-      const file=new File(chunks,`voice-${Date.now()}.${ext}`,{type:mime});
-
-      // Ovoz bu yerda YUBORILMAYDI.
-      // Faqat previewga chiqadi. Foydalanuvchi eshitib,
-      // keyin ➤ tugmasini bosgandagina yuboriladi.
-      chooseFile(file);
-      status.textContent="ovoz tayyor — eshitib ko‘ring";
-    };
-    recorder.start(250);
-  }catch(e){
-    console.error("Microphone error:",e);
-    if(e.name==="NotAllowedError" || e.name==="PermissionDeniedError")
-      alert("Mikrofonga ruxsat berilmagan. Chrome sayt sozlamalaridan Microphone → Allow qiling.");
-    else if(e.name==="NotFoundError")
-      alert("Mikrofon topilmadi. Kompyuterda mikrofon ulanganini tekshiring.");
-    else if(e.name==="NotReadableError")
-      alert("Mikrofon boshqa dastur tomonidan ishlatilmoqda.");
-    else
-      alert("Mikrofon ishlamadi: "+(e.message || e.name));
-    recording=false;
-    micBtn.textContent="🎤";
-    micBtn.title="Ovoz yozish";
-    micBtn.style.background="";
-    status.textContent="kutib turimman";
-  }
-};
-listTime.textContent=timeNow();
+// Set this to the Cloudflare Worker URL from your private deployment.
+const API_BASE = "https://nastarinim.damirshokh.workers.dev";
+const $=s=>document.querySelector(s), app=$("#app"), feed=$("#feed"), input=$("#message"), auth=$("#auth"), toast=$("#toast");
+let accessKey=sessionStorage.getItem("nastarinim_access")||"", cursor=0, selectedFile=null, recorder=null, recording=false, polling=false;
+const headers=()=>({Authorization:"Bearer "+accessKey});
+function notify(text){toast.textContent=text;toast.style.display="block";clearTimeout(notify.timer);notify.timer=setTimeout(()=>toast.style.display="none",3200)}
+function setStatus(text,good=false){$("#status").textContent=text;$(".topstatus .badge").style.background=good?"#3fba8f":"#d8a64d"}
+function localTime(iso){try{return new Date(iso).toLocaleTimeString("uz-UZ",{hour:"2-digit",minute:"2-digit"})}catch{return ""}}
+function addMessage(m){const welcome=$("#welcome");if(welcome)welcome.remove();const b=document.createElement("article");b.className="bubble"+(m.direction==="out"?" mine":"");if(m.file_url){let el;if(m.type==="image"){el=document.createElement("img");el.className="media";el.alt=m.file_name||"Rasm"}else if(m.type==="video"){el=document.createElement("video");el.controls=true;el.className="media"}else if(m.type==="voice"||m.type==="audio"||(m.mime_type||"").startsWith("audio/")){el=document.createElement("audio");el.controls=true}else{el=document.createElement("a");el.target="_blank";el.rel="noopener";el.textContent="📎 "+(m.file_name||"Faylni ochish")}if(el.tagName!=="A"){fetch(API_BASE+m.file_url,{headers:headers()}).then(r=>{if(!r.ok)throw Error();return r.blob()}).then(blob=>{const url=URL.createObjectURL(blob);el.src=url;b.dataset.objectUrl=url}).catch(()=>{el.replaceWith(document.createTextNode("Faylni yuklab bo‘lmadi"))})}else el.onclick=async e=>{e.preventDefault();try{const r=await fetch(API_BASE+m.file_url,{headers:headers()});const url=URL.createObjectURL(await r.blob());const a=document.createElement("a");a.href=url;a.download=m.file_name||"fayl";a.click();setTimeout(()=>URL.revokeObjectURL(url),30000)}catch{notify("Faylni yuklab bo‘lmadi")}};b.append(el)}if(m.text){const t=document.createElement("div");t.textContent=m.text;b.append(t)}const meta=document.createElement("div");meta.className="meta";meta.textContent=localTime(m.created_at)+(m.direction==="out"?"  ✓✓":"");b.append(meta);feed.append(b);feed.scrollTop=feed.scrollHeight;$("#lastMessage").textContent=m.text||((m.type==="image"?"📷 Rasm":m.type==="voice"?"🎙 Ovozli xabar":"📎 Fayl"));$("#listTime").textContent=localTime(m.created_at);cursor=Math.max(cursor,Number(m.id)||cursor)}
+async function request(path,options={}){const r=await fetch(API_BASE+path,{...options,headers:{...headers(),...(options.headers||{})}});if(r.status===401){sessionStorage.removeItem("nastarinim_access");accessKey="";auth.classList.remove("hidden");throw Error("Kirish kaliti yaroqsiz yoki sessiya tugagan.")}if(!r.ok)throw Error("Server xatosi ("+r.status+")");return r}
+async function loadMessages(initial=false){if(polling||!accessKey)return;polling=true;try{const r=await request("/api/messages?after="+(initial?0:cursor));const data=await r.json();for(const m of data.messages||[])addMessage(m);setStatus("onlayn",true)}catch(e){setStatus("aloqa uzildi");if(initial){notify(e.message);throw e}}finally{polling=false}}
+async function ensureWebhook(){if(sessionStorage.getItem("nastarinim_webhook")==="1")return;try{await request("/api/setup-webhook",{method:"POST"});sessionStorage.setItem("nastarinim_webhook","1")}catch(e){notify("Telegram ulanishini sozlashda xatolik: "+e.message)}}
+async function send(){const text=input.value.trim();if(!text&&!selectedFile)return;const btn=$("#sendBtn");btn.disabled=true;try{const fd=new FormData();fd.append("message",text);if(selectedFile)fd.append("file",selectedFile,selectedFile.name);const r=await request("/api/messages",{method:"POST",body:fd});const data=await r.json();if(data.message)addMessage(data.message);input.value="";input.style.height="44px";clearFile()}catch(e){notify("Yuborilmadi: "+e.message)}finally{btn.disabled=false;input.focus()}}
+function chooseFile(file){if(!file)return;selectedFile=file;$("#previewName").textContent=file.name||"Ovozli xabar";$("#preview").classList.add("show");if(file.type.startsWith("audio/")){const a=$("#previewAudio");a.src=URL.createObjectURL(file);a.classList.remove("hidden");$("#previewIcon").textContent="🎙"}else{$("#previewAudio").classList.add("hidden");$("#previewIcon").textContent=file.type.startsWith("image/")?"🖼":"📎"}}
+function clearFile(){const a=$("#previewAudio");if(a.src)URL.revokeObjectURL(a.src);a.removeAttribute("src");a.classList.add("hidden");selectedFile=null;$("#preview").classList.remove("show");$("#fileInput").value=""}
+$("#authForm").onsubmit=async e=>{e.preventDefault();accessKey=$("#accessKey").value;sessionStorage.setItem("nastarinim_access",accessKey);try{await loadMessages(true);auth.classList.add("hidden");ensureWebhook()}catch{sessionStorage.removeItem("nastarinim_access");accessKey=""}};
+$("#sendBtn").onclick=send;input.onkeydown=e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();send()}};input.oninput=()=>{input.style.height="44px";input.style.height=Math.min(input.scrollHeight,130)+"px"};
+$("#fileBtn").onclick=()=>$("#fileInput").click();$("#fileInput").onchange=e=>chooseFile(e.target.files[0]);$("#clearFile").onclick=clearFile;$("#conversation").onclick=()=>app.classList.add("open");$("#back").onclick=()=>app.classList.remove("open");$("#lockBtn").onclick=()=>{sessionStorage.removeItem("nastarinim_access");accessKey="";auth.classList.remove("hidden")};
+$("#search").oninput=e=>{$("#conversation").style.display="hayotim".includes(e.target.value.toLowerCase())?"flex":"none"};$("#infoBtn").onclick=()=>notify("Shaxsiy suhbat · Xabarlar Telegram orqali yetkaziladi");
+async function recordVoice(){if(recording){recorder?.stop();return}try{const stream=await navigator.mediaDevices.getUserMedia({audio:true});recorder=new MediaRecorder(stream);const chunks=[];recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};recorder.onstop=()=>{stream.getTracks().forEach(t=>t.stop());if(chunks.length)chooseFile(new File(chunks,"ovozli-xabar.webm",{type:recorder.mimeType||"audio/webm"}));recording=false;$("#micBtn").textContent="🎙"};recorder.start();recording=true;$("#micBtn").textContent="■";notify("Ovoz yozilmoqda. To‘xtatish uchun tugmani bosing.")}catch{notify("Mikrofonga ruxsat berilmadi.")}}
+$("#micBtn").onclick=recordVoice;$("#topMic").onclick=recordVoice;
+if(accessKey){$("#accessKey").value=accessKey;loadMessages(true).then(()=>{auth.classList.add("hidden");ensureWebhook()})}setInterval(()=>loadMessages(false),2500);
 </script>
-</body>
-</html>
+</body></html>

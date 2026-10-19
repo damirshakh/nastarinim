@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="uz"><head>
+<html lang="uz">
+<head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f7f8fa">
 <title>Nastarinim — shaxsiy messenjer</title>
 <style>
-:root{--bg:#f4f6f8;--panel:#fff;--line:#e9edf1;--ink:#17212b;--muted:#81909d;--green:#168c72;--green2:#e6f5ef;--chat:#eef3f0;--shadow:0 18px 60px #22304412}*{box-sizing:border-box}body{margin:0;background:var(--bg);font:14px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink)}button,input,textarea{font:inherit}button{border:0;cursor:pointer}.shell{height:100dvh;max-width:1500px;margin:auto;padding:22px;display:flex}.app{width:100%;min-height:0;background:var(--panel);border:1px solid #e9edf1;border-radius:22px;box-shadow:var(--shadow);display:grid;grid-template-columns:330px minmax(0,1fr);overflow:hidden}.side{border-right:1px solid var(--line);display:flex;flex-direction:column;min-width:0}.brandbar{height:78px;padding:0 22px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:11px;font-weight:750;font-size:18px;letter-spacing:-.3px}.logo{width:38px;height:38px;border-radius:13px;background:linear-gradient(145deg,#34b89a,#127d68);display:grid;place-items:center;color:white;font-size:20px;box-shadow:0 6px 14px #168c7230}.icon{width:38px;height:38px;border-radius:12px;background:transparent;color:#6d7b87;font-size:18px;display:grid;place-items:center}.icon:hover{background:#f3f6f7}.search{margin:18px 16px 14px;height:42px;border-radius:12px;background:#f4f6f8;display:flex;align-items:center;gap:9px;padding:0 12px;color:#84919c}.search input{width:100%;outline:none;border:0;background:transparent;color:var(--ink)}.sectionlabel{padding:0 20px 9px;color:#9aa5ae;font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:700}.conversation{margin:0 9px;padding:12px 11px;display:flex;gap:12px;align-items:center;border-radius:14px;background:#eff8f5;cursor:pointer}.avatar{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;flex:none;color:#fff;font-size:21px;background:linear-gradient(135deg,#56c6a9,#13836c)}.avatar.you{width:34px;height:34px;font-size:14px;background:linear-gradient(145deg,#7587d7,#485cb6)}.convinfo{flex:1;min-width:0}.convtop{display:flex;align-items:center;justify-content:space-between;gap:8px}.convname{font-weight:680}.time{font-size:11px;color:#99a4ae}.last{font-size:12px;color:#87949e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:3px}.badge{width:7px;height:7px;background:#3fba8f;border-radius:50%}.sidebottom{margin-top:auto;padding:15px;border-top:1px solid var(--line);display:flex;align-items:center;gap:10px}.user-meta{flex:1}.user-name{font-size:13px;font-weight:650}.user-sub{font-size:11px;color:#99a4ae}.main{min-width:0;display:flex;flex-direction:column;background:var(--chat)}.topbar{height:78px;background:#fff;border-bottom:1px solid var(--line);padding:0 24px;display:flex;align-items:center;gap:13px}.topmeta{flex:1}.topname{font-size:15px;font-weight:700}.topstatus{display:flex;align-items:center;gap:6px;color:#87949e;font-size:12px;margin-top:3px}.actions{display:flex;gap:4px}.feed{flex:1;overflow:auto;padding:28px clamp(20px,6vw,92px);display:flex;flex-direction:column;gap:13px;background-color:#f3f6f4;background-image:radial-gradient(#dfe9e4 0.7px,transparent .7px);background-size:19px 19px;scroll-behavior:smooth}.day{align-self:center;padding:5px 12px;border:1px solid #e4eae6;border-radius:99px;background:#ffffffd9;color:#84918b;font-size:11px;margin:2px 0 6px}.welcome{max-width:420px;align-self:center;margin:auto;background:#ffffffed;border:1px solid #e8eeea;padding:22px 25px;border-radius:18px;text-align:center;box-shadow:0 6px 22px #18352b0a}.welcome-icon{font-size:30px}.welcome h2{font-size:16px;margin:8px 0 5px}.welcome p{font-size:12px;color:#87949e;margin:0}.bubble{max-width:min(74%,560px);padding:10px 12px 7px;border-radius:16px 16px 16px 5px;background:#fff;box-shadow:0 2px 5px #1d342608;border:1px solid #e9eeeb;align-self:flex-start;white-space:pre-wrap;overflow-wrap:anywhere}.bubble.mine{align-self:flex-end;border-radius:16px 16px 5px 16px;background:#dcf4e8;border-color:#d5eee0}.bubble .media{display:block;max-width:100%;max-height:340px;border-radius:10px;margin:0 0 6px}.bubble audio{max-width:100%;width:260px}.bubble a{color:#167d68;text-decoration:none;font-weight:600}.meta{font-size:10px;color:#96a29c;text-align:right;margin-top:4px}.composer-wrap{padding:14px 22px 18px;background:#fff;border-top:1px solid var(--line)}.preview{display:none;align-items:center;gap:9px;background:#f5f8f6;border:1px solid var(--line);padding:8px 10px;border-radius:12px;margin-bottom:10px}.preview.show{display:flex}.preview-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#6f7d77;font-size:12px}.composer{display:flex;gap:8px;align-items:flex-end}.compose-icon{flex:none;width:42px;height:44px;border-radius:13px;background:transparent;color:#73817c;font-size:19px}.compose-icon:hover{background:#f2f6f4}.entry{flex:1;min-height:44px;max-height:130px;resize:none;border:1px solid #e8eeea;border-radius:14px;background:#f7f9f8;padding:11px 14px;outline:none;color:var(--ink)}.entry:focus{border-color:#7ac8b0;background:#fff}.entry::placeholder{color:#a6b1ac}.send{width:44px;height:44px;border-radius:14px;background:var(--green);color:white;font-size:19px;box-shadow:0 5px 13px #168c7230}.send:hover{background:#117b65}.send:disabled{opacity:.55}.hint{text-align:center;color:#a7b1ad;font-size:10px;margin-top:8px}.hidden{display:none}.auth{position:fixed;inset:0;background:#12241ed6;display:grid;place-items:center;padding:20px;z-index:10}.authcard{width:min(390px,100%);background:#fff;border-radius:22px;padding:28px;box-shadow:0 25px 90px #06130f55}.authcard .logo{margin:0 auto 16px;width:48px;height:48px}.authcard h1{text-align:center;font-size:20px;margin:0 0 7px}.authcard p{text-align:center;color:#84918c;font-size:13px;margin:0 0 22px}.authcard input{width:100%;height:46px;border:1px solid #e2e9e5;border-radius:12px;padding:0 13px;outline:none}.authcard input:focus{border-color:#54b69c}.authcard button{height:45px;width:100%;margin-top:11px;border-radius:12px;background:var(--green);color:white;font-weight:650}.authhint{text-align:center;color:#a1aaa6;font-size:10px;margin-top:12px}.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);padding:10px 16px;border-radius:12px;background:#1e2c28;color:white;box-shadow:var(--shadow);z-index:20;display:none}.mobileback{display:none}
+:root{--bg:#f4f6f8;--panel:#fff;--line:#e9edf1;--ink:#17212b;--muted:#81909d;--green:#168c72;--green2:#e6f5ef;--chat:#eef3f0;--shadow:0 18px 60px #22304412}*{box-sizing:border-box}body{margin:0;background:var(--bg);font:14px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink)}button,input,textarea{font:inherit}button{border:0;cursor:pointer}.shell{height:100dvh;max-width:1500px;margin:auto;padding:22px;display:flex}.app{width:100%;min-height:0;background:var(--panel);border:1px solid #e9edf1;border-radius:22px;box-shadow:var(--shadow);display:grid;grid-template-columns:330px minmax(0,1fr);overflow:hidden}.side{border-right:1px solid var(--line);display:flex;flex-direction:column;min-width:0}.brandbar{height:78px;padding:0 22px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:11px;font-weight:750;font-size:18px;letter-spacing:-.3px}.logo{width:38px;height:38px;border-radius:13px;background:linear-gradient(145deg,#34b89a,#127d68);display:grid;place-items:center;color:white;font-size:20px;box-shadow:0 6px 14px #168c7230}.icon{width:38px;height:38px;border-radius:12px;background:transparent;color:#6d7b87;font-size:18px;display:grid;place-items:center}.icon:hover{background:#f3f6f7}.search{margin:18px 16px 14px;height:42px;border-radius:12px;background:#f4f6f8;display:flex;align-items:center;gap:9px;padding:0 12px;color:#84919c}.search input{width:100%;outline:none;border:0;background:transparent;color:var(--ink)}.sectionlabel{padding:0 20px 9px;color:#9aa5ae;font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:700}.conversation{margin:0 9px;padding:12px 11px;display:flex;gap:12px;align-items:center;border-radius:14px;background:#eff8f5;cursor:pointer}.avatar{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;flex:none;color:#fff;font-size:21px;background:linear-gradient(135deg,#56c6a9,#13836c)}.avatar.you{width:34px;height:34px;font-size:14px;background:linear-gradient(145deg,#7587d7,#485cb6)}.convinfo{flex:1;min-width:0}.convtop{display:flex;align-items:center;justify-content:space-between;gap:8px}.convname{font-weight:680}.time{font-size:11px;color:#99a4ae}.last{font-size:12px;color:#87949e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:3px}.badge{width:7px;height:7px;background:#3fba8f;border-radius:50%}.sidebottom{margin-top:auto;padding:15px;border-top:1px solid var(--line);display:flex;align-items:center;gap:10px}.user-meta{flex:1}.user-name{font-size:13px;font-weight:650}.user-sub{font-size:11px;color:#99a4ae}.main{min-width:0;display:flex;flex-direction:column;background:var(--chat)}.topbar{height:78px;background:#fff;border-bottom:1px solid var(--line);padding:0 24px;display:flex;align-items:center;gap:13px}.topmeta{flex:1}.topname{font-size:15px;font-weight:700}.topstatus{display:flex;align-items:center;gap:6px;color:#87949e;font-size:12px;margin-top:3px}.actions{display:flex;gap:4px}.feed{flex:1;overflow:auto;padding:28px clamp(20px,6vw,92px);display:flex;flex-direction:column;gap:13px;background-color:#f3f6f4;background-image:radial-gradient(#dfe9e4 0.7px,transparent .7px);background-size:19px 19px;scroll-behavior:smooth}.day{align-self:center;padding:5px 12px;border:1px solid #e4eae6;border-radius:99px;background:#ffffffd9;color:#84918b;font-size:11px;margin:2px 0 6px}.welcome{max-width:420px;align-self:center;margin:auto;background:#ffffffed;border:1px solid #e8eeea;padding:22px 25px;border-radius:18px;text-align:center;box-shadow:0 6px 22px #18352b0a}.welcome-icon{font-size:30px}.welcome h2{font-size:16px;margin:8px 0 5px}.welcome p{font-size:12px;color:#87949e;margin:0}.bubble{max-width:min(74%,560px);padding:10px 12px 7px;border-radius:16px 16px 16px 5px;background:#fff;box-shadow:0 2px 5px #1d342608;border:1px solid #e9eeeb;align-self:flex-start;white-space:pre-wrap;overflow-wrap:anywhere}.bubble.mine{align-self:flex-end;border-radius:16px 16px 5px 16px;background:#dcf4e8;border-color:#d5eee0}.bubble .media{display:block;max-width:100%;max-height:340px;border-radius:10px;margin:0 0 6px}.bubble audio{max-width:100%;width:260px}.bubble a{color:#167d68;text-decoration:none;font-weight:600}.meta{font-size:10px;color:#96a29c;text-align:right;margin-top:4px}.composer-wrap{padding:14px 22px 18px;background:#fff;border-top:1px solid var(--line)}.preview{display:none;align-items:center;gap:9px;background:#f5f8f6;border:1px solid var(--line);padding:8px 10px;border-radius:12px;margin-bottom:10px}.preview.show{display:flex}.preview-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#6f7d77;font-size:12px}.composer{display:flex;gap:8px;align-items:flex-end}.compose-icon{flex:none;width:42px;height:44px;border-radius:13px;background:transparent;color:#73817c;font-size:19px}.compose-icon:hover{background:#f2f6f4}.entry{flex:1;min-height:44px;max-height:130px;resize:none;border:1px solid #e8eeea;border-radius:14px;background:#f7f9f8;padding:11px 14px;outline:none;color:var(--ink)}.entry:focus{border-color:#7ac8b0;background:#fff}.entry::placeholder{color:#a6b1ac}.send{width:44px;height:44px;border-radius:14px;background:var(--green);color:white;font-size:19px;box-shadow:0 5px 13px #168c7230}.send:hover{background:#117b65}.send:disabled{opacity:.55}.hint{text-align:center;color:#a7b1ad;font-size:10px;margin-top:8px}.hidden{display:none}.auth{position:fixed;inset:0;background:#12241ed6;display:grid;place-items:center;padding:20px;z-index:10}.authcard{width:min(390px,100%);background:#fff;border-radius:22px;padding:28px;box-shadow:0 25px 90px #06130f55}.authcard .logo{margin:0 auto 16px;width:48px;height:48px}.authcard h1{text-align:center;font-size:20px;margin:0 0 7px}.authcard p{text-align:center;color:#84918c;font-size:13px;margin:0 0 22px}.authcard input{width:100%;height:46px;border:1px solid #e2e9e5;border-radius:12px;padding:0 13px;outline:none}.authcard input:focus{border-color:#54b69c}.authcard button{height:45px;width:100%;margin-top:11px;border-radius:12px;background:var(--green);color:white;font-weight:650}.authhint{text-align:center;color:#a1aaa6;font-size:10px;margin-top:12px}.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);padding:10px 16px;border-radius:12px;background:#1e2c28;color:white;box-shadow:var(--shadow);z-index:20;display:none}.mobileback{display:none}.auth.hidden{display:none}.auth-error{min-height:18px;margin:9px 0 0!important;color:#b42318!important;font-size:12px!important;text-align:center!important}
 @media(max-width:760px){.shell{padding:0}.app{border:0;border-radius:0;grid-template-columns:1fr}.side{display:flex}.main{display:none}.app.open .side{display:none}.app.open .main{display:flex}.mobileback{display:grid}.feed{padding:18px 12px}.bubble{max-width:88%}.topbar{padding:0 12px;height:68px}.composer-wrap{padding:10px 9px calc(11px + env(safe-area-inset-bottom))}.actions .icon:nth-child(2){display:none}.brandbar{height:68px}}
 </style></head>
 <body>
@@ -14,31 +15,300 @@
 <div class="sidebottom"><div class="avatar you">S</div><div class="user-meta"><div class="user-name">Shaxsiy akkaunt</div><div class="user-sub">Faqat siz va yaqin insoningiz</div></div><span class="badge"></span></div></aside>
 <main class="main"><header class="topbar"><button class="icon mobileback" id="back">‹</button><div class="avatar">✿</div><div class="topmeta"><div class="topname" id="headerName">Hayotim</div><div class="topstatus"><span class="badge"></span><span id="status">Ulanmoqda...</span></div></div><div class="actions"><button class="icon" title="Ovoz yozish" id="topMic">♩</button><button class="icon" title="Suhbat maʼlumoti" id="infoBtn">ⓘ</button></div></header>
 <section class="feed" id="feed"><div class="day">BUGUN</div><div class="welcome" id="welcome"><div class="welcome-icon">💬</div><h2>Shaxsiy suhbat</h2><p>Xabarlaringiz bevosita suhbatdoshingizning Telegram’iga yetkaziladi. U javob yozganda shu yerda paydo bo‘ladi.</p></div></section>
-<div class="composer-wrap"><div class="preview" id="preview"><span id="previewIcon">📎</span><div class="preview-name" id="previewName"></div><audio id="previewAudio" controls="" class="hidden"></audio><button class="icon" id="clearFile" aria-label="Faylni olib tashlash">×</button></div><div class="composer"><button class="compose-icon" id="fileBtn" title="Fayl biriktirish">＋</button><input class="hidden" type="file" id="fileInput" accept="image/*,video/*,audio/*,.pdf,.doc,.docx,.zip,.txt"><input class="hidden" type="file" id="cameraInput" accept="image/*" capture="environment"><textarea class="entry" id="message" rows="1" placeholder="Xabar yozing… (Enter — yuborish)"></textarea><button class="compose-icon" id="micBtn" title="Ovoz yozish">🎙</button><button class="send" id="sendBtn" title="Yuborish">➤</button></div><div class="hint">Enter — yuborish · Shift + Enter — yangi qator</div></div></main>
+<div class="composer-wrap"><div class="preview" id="preview"><span id="previewIcon">📎</span><div class="preview-name" id="previewName"></div><audio id="previewAudio" controls class="hidden"></audio><button class="icon" id="clearFile" aria-label="Faylni olib tashlash">×</button></div><div class="composer"><button class="compose-icon" id="fileBtn" title="Fayl biriktirish">＋</button><input class="hidden" type="file" id="fileInput" accept="image/*,video/*,audio/*,.pdf,.doc,.docx,.zip,.txt"><input class="hidden" type="file" id="cameraInput" accept="image/*" capture="environment"><textarea class="entry" id="message" rows="1" placeholder="Xabar yozing… (Enter — yuborish)"></textarea><button class="compose-icon" id="micBtn" title="Ovoz yozish">🎙</button><button class="send" id="sendBtn" title="Yuborish">➤</button></div><div class="hint">Enter — yuborish · Shift + Enter — yangi qator</div></div></main>
 </div></div>
-<div class="auth" id="auth"><form class="authcard" id="authForm"><div class="logo">✦</div><h1>Shaxsiy suhbatga kiring</h1><p>Bu suhbatga faqat ruxsat kalitiga ega odam kira oladi.</p><input id="accessKey" type="password" autocomplete="current-password" placeholder="Kirish kaliti" required=""><button type="submit">Xavfsiz kirish</button><div class="authhint">Kirish kaliti Cloudflare’da saqlanadi va suhbatni himoya qiladi.</div></form></div><div class="toast" id="toast"></div>
-<script>
-// Set this to the Cloudflare Worker URL from your private deployment.
-const API_BASE = "https://nastarinim.damirshokh.workers.dev";
-const $=s=>document.querySelector(s), app=$("#app"), feed=$("#feed"), input=$("#message"), auth=$("#auth"), toast=$("#toast");
-let accessKey=sessionStorage.getItem("nastarinim_access")||"", cursor=0, selectedFile=null, recorder=null, recording=false, polling=false;
-const headers=()=>({Authorization:"Bearer "+accessKey});
-function notify(text){toast.textContent=text;toast.style.display="block";clearTimeout(notify.timer);notify.timer=setTimeout(()=>toast.style.display="none",3200)}
-function setStatus(text,good=false){$("#status").textContent=text;$(".topstatus .badge").style.background=good?"#3fba8f":"#d8a64d"}
-function localTime(iso){try{return new Date(iso).toLocaleTimeString("uz-UZ",{hour:"2-digit",minute:"2-digit"})}catch{return ""}}
-function addMessage(m){const welcome=$("#welcome");if(welcome)welcome.remove();const b=document.createElement("article");b.className="bubble"+(m.direction==="out"?" mine":"");if(m.file_url){let el;if(m.type==="image"){el=document.createElement("img");el.className="media";el.alt=m.file_name||"Rasm"}else if(m.type==="video"){el=document.createElement("video");el.controls=true;el.className="media"}else if(m.type==="voice"||m.type==="audio"||(m.mime_type||"").startsWith("audio/")){el=document.createElement("audio");el.controls=true}else{el=document.createElement("a");el.target="_blank";el.rel="noopener";el.textContent="📎 "+(m.file_name||"Faylni ochish")}if(el.tagName!=="A"){fetch(API_BASE+m.file_url,{headers:headers()}).then(r=>{if(!r.ok)throw Error();return r.blob()}).then(blob=>{const url=URL.createObjectURL(blob);el.src=url;b.dataset.objectUrl=url}).catch(()=>{el.replaceWith(document.createTextNode("Faylni yuklab bo‘lmadi"))})}else el.onclick=async e=>{e.preventDefault();try{const r=await fetch(API_BASE+m.file_url,{headers:headers()});const url=URL.createObjectURL(await r.blob());const a=document.createElement("a");a.href=url;a.download=m.file_name||"fayl";a.click();setTimeout(()=>URL.revokeObjectURL(url),30000)}catch{notify("Faylni yuklab bo‘lmadi")}};b.append(el)}if(m.text){const t=document.createElement("div");t.textContent=m.text;b.append(t)}const meta=document.createElement("div");meta.className="meta";meta.textContent=localTime(m.created_at)+(m.direction==="out"?"  ✓✓":"");b.append(meta);feed.append(b);feed.scrollTop=feed.scrollHeight;$("#lastMessage").textContent=m.text||((m.type==="image"?"📷 Rasm":m.type==="voice"?"🎙 Ovozli xabar":"📎 Fayl"));$("#listTime").textContent=localTime(m.created_at);cursor=Math.max(cursor,Number(m.id)||cursor)}
-async function request(path,options={}){const r=await fetch(API_BASE+path,{...options,headers:{...headers(),...(options.headers||{})}});if(r.status===401){sessionStorage.removeItem("nastarinim_access");accessKey="";auth.classList.remove("hidden");throw Error("Kirish kaliti yaroqsiz yoki sessiya tugagan.")}if(!r.ok)throw Error("Server xatosi ("+r.status+")");return r}
-async function loadMessages(initial=false){if(polling||!accessKey)return;polling=true;try{const r=await request("/api/messages?after="+(initial?0:cursor));const data=await r.json();for(const m of data.messages||[])addMessage(m);setStatus("onlayn",true)}catch(e){setStatus("aloqa uzildi");if(initial){notify(e.message);throw e}}finally{polling=false}}
-async function ensureWebhook(){if(sessionStorage.getItem("nastarinim_webhook")==="1")return;try{await request("/api/setup-webhook",{method:"POST"});sessionStorage.setItem("nastarinim_webhook","1")}catch(e){notify("Telegram ulanishini sozlashda xatolik: "+e.message)}}
-async function send(){const text=input.value.trim();if(!text&&!selectedFile)return;const btn=$("#sendBtn");btn.disabled=true;try{const fd=new FormData();fd.append("message",text);if(selectedFile)fd.append("file",selectedFile,selectedFile.name);const r=await request("/api/messages",{method:"POST",body:fd});const data=await r.json();if(data.message)addMessage(data.message);input.value="";input.style.height="44px";clearFile()}catch(e){notify("Yuborilmadi: "+e.message)}finally{btn.disabled=false;input.focus()}}
-function chooseFile(file){if(!file)return;selectedFile=file;$("#previewName").textContent=file.name||"Ovozli xabar";$("#preview").classList.add("show");if(file.type.startsWith("audio/")){const a=$("#previewAudio");a.src=URL.createObjectURL(file);a.classList.remove("hidden");$("#previewIcon").textContent="🎙"}else{$("#previewAudio").classList.add("hidden");$("#previewIcon").textContent=file.type.startsWith("image/")?"🖼":"📎"}}
-function clearFile(){const a=$("#previewAudio");if(a.src)URL.revokeObjectURL(a.src);a.removeAttribute("src");a.classList.add("hidden");selectedFile=null;$("#preview").classList.remove("show");$("#fileInput").value=""}
-$("#authForm").onsubmit=async e=>{e.preventDefault();accessKey=$("#accessKey").value;sessionStorage.setItem("nastarinim_access",accessKey);try{await loadMessages(true);auth.classList.add("hidden");ensureWebhook()}catch{sessionStorage.removeItem("nastarinim_access");accessKey=""}};
-$("#sendBtn").onclick=send;input.onkeydown=e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();send()}};input.oninput=()=>{input.style.height="44px";input.style.height=Math.min(input.scrollHeight,130)+"px"};
-$("#fileBtn").onclick=()=>$("#fileInput").click();$("#fileInput").onchange=e=>chooseFile(e.target.files[0]);$("#clearFile").onclick=clearFile;$("#conversation").onclick=()=>app.classList.add("open");$("#back").onclick=()=>app.classList.remove("open");$("#lockBtn").onclick=()=>{sessionStorage.removeItem("nastarinim_access");accessKey="";auth.classList.remove("hidden")};
-$("#search").oninput=e=>{$("#conversation").style.display="hayotim".includes(e.target.value.toLowerCase())?"flex":"none"};$("#infoBtn").onclick=()=>notify("Shaxsiy suhbat · Xabarlar Telegram orqali yetkaziladi");
-async function recordVoice(){if(recording){recorder?.stop();return}try{const stream=await navigator.mediaDevices.getUserMedia({audio:true});recorder=new MediaRecorder(stream);const chunks=[];recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};recorder.onstop=()=>{stream.getTracks().forEach(t=>t.stop());if(chunks.length)chooseFile(new File(chunks,"ovozli-xabar.webm",{type:recorder.mimeType||"audio/webm"}));recording=false;$("#micBtn").textContent="🎙"};recorder.start();recording=true;$("#micBtn").textContent="■";notify("Ovoz yozilmoqda. To‘xtatish uchun tugmani bosing.")}catch{notify("Mikrofonga ruxsat berilmadi.")}}
-$("#micBtn").onclick=recordVoice;$("#topMic").onclick=recordVoice;
-if(accessKey){$("#accessKey").value=accessKey;loadMessages(true).then(()=>{auth.classList.add("hidden");ensureWebhook()})}setInterval(()=>loadMessages(false),2500);
-</script>
-</body></html>
+<div class="auth" id="auth" role="dialog" aria-modal="true" aria-labelledby="authTitle"><form class="authcard" id="authForm"><div class="logo">✦</div><h1 id="authTitle">Shaxsiy suhbatga kiring</h1><p>Bu suhbatga faqat ruxsat kalitiga ega odam kira oladi.</p><input id="accessKey" type="password" autocomplete="current-password" placeholder="Kirish kaliti" required><button id="authSubmit" type="submit">Xavfsiz kirish</button><p class="auth-error" id="authError" role="alert" aria-live="polite"></p><div class="authhint">Kirish kaliti Cloudflare’da saqlanadi va suhbatni himoya qiladi.</div></form></div><div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>const API_BASE = "https://nastarinim.damirshokh.workers.dev";
+const $ = selector => document.querySelector(selector);
+const app = $("#app"), feed = $("#feed"), input = $("#message"), auth = $("#auth"), toast = $("#toast");
+let accessKey = "", authenticated = false, cursor = 0, selectedFile = null, recorder = null, recording = false, polling = false, sending = false;
+const seenMessages = new Set();
+const headers = () => ({ Authorization: "Bearer " + accessKey });
+
+function notify(text) {
+  toast.textContent = text;
+  toast.style.display = "block";
+  clearTimeout(notify.timer);
+  notify.timer = setTimeout(() => toast.style.display = "none", 3600);
+}
+function setStatus(text, good = false) {
+  $("#status").textContent = text;
+  $(".topstatus .badge").style.background = good ? "#3fba8f" : "#d8a64d";
+}
+function showAuth(message = "", clearInput = false) {
+  authenticated = false;
+  accessKey = "";
+  sessionStorage.removeItem("nastarinim_access");
+  clearConversation();
+  clearFile();
+  input.value = "";
+  app.classList.remove("open");
+  auth.classList.remove("hidden");
+  $("#authError").textContent = message;
+  if (clearInput) $("#accessKey").value = "";
+  setStatus("himoyalangan");
+}
+function localTime(iso) {
+  try { return new Date(iso).toLocaleTimeString("uz-UZ", { hour: "2-digit", minute: "2-digit" }); }
+  catch { return ""; }
+}
+function addMessage(m) {
+  const id = m.id == null ? null : String(m.id);
+  if (id && seenMessages.has(id)) return;
+  if (id) seenMessages.add(id);
+  const welcome = $("#welcome");
+  if (welcome) welcome.remove();
+  const bubble = document.createElement("article");
+  bubble.className = "bubble" + (m.direction === "out" ? " mine" : "");
+  if (m.file_url) {
+    let element;
+    if (m.type === "image") {
+      element = document.createElement("img");
+      element.className = "media";
+      element.alt = m.file_name || "Rasm";
+    } else if (m.type === "video") {
+      element = document.createElement("video");
+      element.controls = true;
+      element.className = "media";
+    } else if (m.type === "voice" || m.type === "audio" || (m.mime_type || "").startsWith("audio/")) {
+      element = document.createElement("audio");
+      element.controls = true;
+    } else {
+      element = document.createElement("a");
+      element.target = "_blank";
+      element.rel = "noopener";
+      element.textContent = "📎 " + (m.file_name || "Faylni ochish");
+    }
+    if (element.tagName !== "A") {
+      fetch(API_BASE + m.file_url, { headers: headers() })
+        .then(response => { if (!response.ok) throw new Error(); return response.blob(); })
+        .then(blob => {
+          const url = URL.createObjectURL(blob);
+          element.src = url;
+          bubble.dataset.objectUrl = url;
+        })
+        .catch(() => element.replaceWith(document.createTextNode("Faylni yuklab bo‘lmadi")));
+    } else {
+      element.onclick = async event => {
+        event.preventDefault();
+        try {
+          const response = await fetch(API_BASE + m.file_url, { headers: headers() });
+          if (!response.ok) throw new Error();
+          const url = URL.createObjectURL(await response.blob());
+          const link = document.createElement("a");
+          link.href = url;
+          link.download = m.file_name || "fayl";
+          link.click();
+          setTimeout(() => URL.revokeObjectURL(url), 30000);
+        } catch { notify("Faylni yuklab bo‘lmadi"); }
+      };
+    }
+    bubble.append(element);
+  }
+  if (m.text) {
+    const text = document.createElement("div");
+    text.textContent = m.text;
+    bubble.append(text);
+  }
+  const meta = document.createElement("div");
+  meta.className = "meta";
+  meta.textContent = localTime(m.created_at) + (m.direction === "out" ? "  ✓✓" : "");
+  bubble.append(meta);
+  feed.append(bubble);
+  feed.scrollTop = feed.scrollHeight;
+  $("#lastMessage").textContent = m.text || (m.type === "image" ? "📷 Rasm" : m.type === "voice" ? "🎙 Ovozli xabar" : "📎 Fayl");
+  $("#listTime").textContent = localTime(m.created_at);
+  cursor = Math.max(cursor, Number(m.id) || cursor);
+}
+async function request(path, options = {}) {
+  let response;
+  try {
+    response = await fetch(API_BASE + path, {
+      ...options,
+      headers: { ...headers(), ...(options.headers || {}) }
+    });
+  } catch {
+    throw new Error("Serverga ulanib bo‘lmadi. Internet aloqasini tekshirib, qayta urinib ko‘ring.");
+  }
+  if (response.status === 401) {
+    const error = new Error("Kirish kaliti yaroqsiz yoki sessiya tugagan. Qayta kiring.");
+    showAuth(error.message, true);
+    throw error;
+  }
+  if (!response.ok) throw new Error("Server xatosi (" + response.status + "). Qayta urinib ko‘ring.");
+  return response;
+}
+async function authorize(key) {
+  const button = $("#authSubmit");
+  const errorBox = $("#authError");
+  button.disabled = true;
+  button.textContent = "Tekshirilmoqda…";
+  errorBox.textContent = "";
+  accessKey = key.trim();
+  try {
+    const response = await request("/api/messages?after=0");
+    const data = await response.json();
+    authenticated = true;
+    sessionStorage.setItem("nastarinim_access", accessKey);
+    auth.classList.add("hidden");
+    errorBox.textContent = "";
+    for (const message of data.messages || []) addMessage(message);
+    setStatus("onlayn", true);
+    input.focus();
+    void ensureWebhook();
+  } catch (error) {
+    if (authenticated) return;
+    accessKey = "";
+    sessionStorage.removeItem("nastarinim_access");
+    auth.classList.remove("hidden");
+    if (!errorBox.textContent) errorBox.textContent = error.message || "Kirish amalga oshmadi. Qayta urinib ko‘ring.";
+    setStatus("ulanmadi");
+  } finally {
+    button.disabled = false;
+    button.textContent = "Xavfsiz kirish";
+  }
+}
+async function loadMessages() {
+  if (!authenticated || polling) return;
+  polling = true;
+  try {
+    const response = await request("/api/messages?after=" + cursor);
+    const data = await response.json();
+    for (const message of data.messages || []) addMessage(message);
+    setStatus("onlayn", true);
+  } catch (error) {
+    if (authenticated) {
+      setStatus("aloqa uzildi");
+      notify(error.message);
+    }
+  } finally {
+    polling = false;
+  }
+}
+async function ensureWebhook() {
+  if (sessionStorage.getItem("nastarinim_webhook") === "1") return;
+  try {
+    await request("/api/setup-webhook", { method: "POST" });
+    sessionStorage.setItem("nastarinim_webhook", "1");
+  } catch (error) {
+    if (authenticated) notify("Telegram ulanishini sozlashda xatolik: " + error.message);
+  }
+}
+async function send() {
+  const text = input.value.trim();
+  if (sending || (!text && !selectedFile) || !authenticated) return;
+  sending = true;
+  const button = $("#sendBtn");
+  button.disabled = true;
+  try {
+    const form = new FormData();
+    form.append("message", text);
+    if (selectedFile) form.append("file", selectedFile, selectedFile.name);
+    const response = await request("/api/messages", { method: "POST", body: form });
+    const data = await response.json();
+    if (data.message) addMessage(data.message);
+    input.value = "";
+    input.style.height = "44px";
+    clearFile();
+  } catch (error) {
+    if (authenticated) notify("Yuborilmadi: " + error.message);
+  } finally {
+    sending = false;
+    button.disabled = false;
+    if (authenticated) input.focus();
+  }
+}
+function chooseFile(file) {
+  if (!file) return;
+  selectedFile = file;
+  $("#previewName").textContent = file.name || "Ovozli xabar";
+  $("#preview").classList.add("show");
+  if (file.type.startsWith("audio/")) {
+    const audio = $("#previewAudio");
+    audio.src = URL.createObjectURL(file);
+    audio.classList.remove("hidden");
+    $("#previewIcon").textContent = "🎙";
+  } else {
+    $("#previewAudio").classList.add("hidden");
+    $("#previewIcon").textContent = file.type.startsWith("image/") ? "🖼" : "📎";
+  }
+}
+function clearFile() {
+  const audio = $("#previewAudio");
+  if (audio.src) URL.revokeObjectURL(audio.src);
+  audio.removeAttribute("src");
+  audio.classList.add("hidden");
+  selectedFile = null;
+  $("#preview").classList.remove("show");
+  $("#fileInput").value = "";
+  $("#cameraInput").value = "";
+}
+function clearConversation() {
+  feed.querySelectorAll(".bubble").forEach(bubble => {
+    if (bubble.dataset.objectUrl) URL.revokeObjectURL(bubble.dataset.objectUrl);
+    bubble.remove();
+  });
+  seenMessages.clear();
+  cursor = 0;
+  $("#lastMessage").textContent = "Muloqotni boshlash uchun yozing";
+  $("#listTime").textContent = "";
+  if (!$("#welcome")) {
+    const welcome = document.createElement("div");
+    welcome.className = "welcome";
+    welcome.id = "welcome";
+    welcome.innerHTML = '<div class="welcome-icon">💬</div><h2>Shaxsiy suhbat</h2><p>Xabarlaringiz bevosita suhbatdoshingizning Telegram’iga yetkaziladi. U javob yozganda shu yerda paydo bo‘ladi.</p>';
+    feed.append(welcome);
+  }
+}
+$("#authForm").addEventListener("submit", event => {
+  event.preventDefault();
+  void authorize($("#accessKey").value);
+});
+$("#sendBtn").onclick = send;
+input.onkeydown = event => {
+  if (event.key === "Enter" && !event.shiftKey) { event.preventDefault(); send(); }
+};
+input.oninput = () => {
+  input.style.height = "44px";
+  input.style.height = Math.min(input.scrollHeight, 130) + "px";
+};
+$("#fileBtn").onclick = () => $("#fileInput").click();
+$("#fileInput").onchange = event => chooseFile(event.target.files[0]);
+$("#clearFile").onclick = clearFile;
+$("#conversation").onclick = () => app.classList.add("open");
+$("#back").onclick = () => app.classList.remove("open");
+$("#lockBtn").onclick = () => {
+  clearConversation();
+  showAuth("Sessiya yopildi. Davom etish uchun kirish kalitini kiriting.", true);
+};
+$("#search").oninput = event => {
+  $("#conversation").style.display = "hayotim".includes(event.target.value.toLowerCase()) ? "flex" : "none";
+};
+$("#infoBtn").onclick = () => notify("Shaxsiy suhbat · Xabarlar Telegram orqali yetkaziladi");
+async function recordVoice() {
+  if (recording) { recorder?.stop(); return; }
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    recorder = new MediaRecorder(stream);
+    const chunks = [];
+    recorder.ondataavailable = event => { if (event.data.size) chunks.push(event.data); };
+    recorder.onstop = () => {
+      stream.getTracks().forEach(track => track.stop());
+      if (chunks.length) chooseFile(new File(chunks, "ovozli-xabar.webm", { type: recorder.mimeType || "audio/webm" }));
+      recording = false;
+      $("#micBtn").textContent = "🎙";
+    };
+    recorder.start();
+    recording = true;
+    $("#micBtn").textContent = "■";
+    notify("Ovoz yozilmoqda. To‘xtatish uchun tugmani bosing.");
+  } catch { notify("Mikrofonga ruxsat berilmadi."); }
+}
+$("#micBtn").onclick = recordVoice;
+$("#topMic").onclick = recordVoice;
+const savedKey = sessionStorage.getItem("nastarinim_access");
+if (savedKey) {
+  $("#accessKey").value = savedKey;
+  void authorize(savedKey);
+}
+setInterval(loadMessages, 2500);</script></body></html>

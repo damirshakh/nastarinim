@@ -6,16 +6,89 @@
 <style>
 :root{--bg:#f4f6f8;--panel:#fff;--line:#e9edf1;--ink:#17212b;--muted:#81909d;--green:#168c72;--green2:#e6f5ef;--chat:#eef3f0;--shadow:0 18px 60px #22304412}*{box-sizing:border-box}body{margin:0;background:var(--bg);font:14px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink)}button,input,textarea{font:inherit}button{border:0;cursor:pointer}.shell{height:100dvh;max-width:1500px;margin:auto;padding:22px;display:flex}.app{width:100%;min-height:0;background:var(--panel);border:1px solid #e9edf1;border-radius:22px;box-shadow:var(--shadow);display:grid;grid-template-columns:330px minmax(0,1fr);overflow:hidden}.side{border-right:1px solid var(--line);display:flex;flex-direction:column;min-width:0}.brandbar{height:78px;padding:0 22px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:11px;font-weight:750;font-size:18px;letter-spacing:-.3px}.logo{width:38px;height:38px;border-radius:13px;background:linear-gradient(145deg,#34b89a,#127d68);display:grid;place-items:center;color:white;font-size:20px;box-shadow:0 6px 14px #168c7230}.icon{width:38px;height:38px;border-radius:12px;background:transparent;color:#6d7b87;font-size:18px;display:grid;place-items:center}.icon:hover{background:#f3f6f7}.search{margin:18px 16px 14px;height:42px;border-radius:12px;background:#f4f6f8;display:flex;align-items:center;gap:9px;padding:0 12px;color:#84919c}.search input{width:100%;outline:none;border:0;background:transparent;color:var(--ink)}.sectionlabel{padding:0 20px 9px;color:#9aa5ae;font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:700}.conversation{margin:0 9px;padding:12px 11px;display:flex;gap:12px;align-items:center;border-radius:14px;background:#eff8f5;cursor:pointer}.avatar{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;flex:none;color:#fff;font-size:21px;background:linear-gradient(135deg,#56c6a9,#13836c)}.avatar.you{width:34px;height:34px;font-size:14px;background:linear-gradient(145deg,#7587d7,#485cb6)}.convinfo{flex:1;min-width:0}.convtop{display:flex;align-items:center;justify-content:space-between;gap:8px}.convname{font-weight:680}.time{font-size:11px;color:#99a4ae}.last{font-size:12px;color:#87949e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:3px}.badge{width:7px;height:7px;background:#3fba8f;border-radius:50%}.sidebottom{margin-top:auto;padding:15px;border-top:1px solid var(--line);display:flex;align-items:center;gap:10px}.user-meta{flex:1}.user-name{font-size:13px;font-weight:650}.user-sub{font-size:11px;color:#99a4ae}.main{min-width:0;display:flex;flex-direction:column;background:var(--chat)}.topbar{height:78px;background:#fff;border-bottom:1px solid var(--line);padding:0 24px;display:flex;align-items:center;gap:13px}.topmeta{flex:1}.topname{font-size:15px;font-weight:700}.topstatus{display:flex;align-items:center;gap:6px;color:#87949e;font-size:12px;margin-top:3px}.actions{display:flex;gap:4px}.feed{flex:1;overflow:auto;padding:28px clamp(20px,6vw,92px);display:flex;flex-direction:column;gap:13px;background-color:#f3f6f4;background-image:radial-gradient(#dfe9e4 0.7px,transparent .7px);background-size:19px 19px;scroll-behavior:smooth}.day{align-self:center;padding:5px 12px;border:1px solid #e4eae6;border-radius:99px;background:#ffffffd9;color:#84918b;font-size:11px;margin:2px 0 6px}.welcome{max-width:420px;align-self:center;margin:auto;background:#ffffffed;border:1px solid #e8eeea;padding:22px 25px;border-radius:18px;text-align:center;box-shadow:0 6px 22px #18352b0a}.welcome-icon{font-size:30px}.welcome h2{font-size:16px;margin:8px 0 5px}.welcome p{font-size:12px;color:#87949e;margin:0}.bubble{max-width:min(74%,560px);padding:10px 12px 7px;border-radius:16px 16px 16px 5px;background:#fff;box-shadow:0 2px 5px #1d342608;border:1px solid #e9eeeb;align-self:flex-start;white-space:pre-wrap;overflow-wrap:anywhere}.bubble.mine{align-self:flex-end;border-radius:16px 16px 5px 16px;background:#dcf4e8;border-color:#d5eee0}.bubble .media{display:block;max-width:100%;max-height:340px;border-radius:10px;margin:0 0 6px}.bubble audio{max-width:100%;width:260px}.bubble a{color:#167d68;text-decoration:none;font-weight:600}.meta{font-size:10px;color:#96a29c;text-align:right;margin-top:4px}.composer-wrap{padding:14px 22px 18px;background:#fff;border-top:1px solid var(--line)}.preview{display:none;align-items:center;gap:9px;background:#f5f8f6;border:1px solid var(--line);padding:8px 10px;border-radius:12px;margin-bottom:10px}.preview.show{display:flex}.preview-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#6f7d77;font-size:12px}.composer{display:flex;gap:8px;align-items:flex-end}.compose-icon{flex:none;width:42px;height:44px;border-radius:13px;background:transparent;color:#73817c;font-size:19px}.compose-icon:hover{background:#f2f6f4}.entry{flex:1;min-height:44px;max-height:130px;resize:none;border:1px solid #e8eeea;border-radius:14px;background:#f7f9f8;padding:11px 14px;outline:none;color:var(--ink)}.entry:focus{border-color:#7ac8b0;background:#fff}.entry::placeholder{color:#a6b1ac}.send{width:44px;height:44px;border-radius:14px;background:var(--green);color:white;font-size:19px;box-shadow:0 5px 13px #168c7230}.send:hover{background:#117b65}.send:disabled{opacity:.55}.hint{text-align:center;color:#a7b1ad;font-size:10px;margin-top:8px}.hidden{display:none}.auth{position:fixed;inset:0;background:#12241ed6;display:grid;place-items:center;padding:20px;z-index:10}.authcard{width:min(390px,100%);background:#fff;border-radius:22px;padding:28px;box-shadow:0 25px 90px #06130f55}.authcard .logo{margin:0 auto 16px;width:48px;height:48px}.authcard h1{text-align:center;font-size:20px;margin:0 0 7px}.authcard p{text-align:center;color:#84918c;font-size:13px;margin:0 0 22px}.authcard input{width:100%;height:46px;border:1px solid #e2e9e5;border-radius:12px;padding:0 13px;outline:none}.authcard input:focus{border-color:#54b69c}.authcard button{height:45px;width:100%;margin-top:11px;border-radius:12px;background:var(--green);color:white;font-weight:650}.authhint{text-align:center;color:#a1aaa6;font-size:10px;margin-top:12px}.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);padding:10px 16px;border-radius:12px;background:#1e2c28;color:white;box-shadow:var(--shadow);z-index:20;display:none}.mobileback{display:none}.auth.hidden{display:none}.auth-error{min-height:18px;margin:9px 0 0!important;color:#b42318!important;font-size:12px!important;text-align:center!important}
 @media(max-width:760px){.shell{padding:0}.app{border:0;border-radius:0;grid-template-columns:1fr}.side{display:flex}.main{display:none}.app.open .side{display:none}.app.open .main{display:flex}.mobileback{display:grid}.feed{padding:18px 12px}.bubble{max-width:88%}.topbar{padding:0 12px;height:68px}.composer-wrap{padding:10px 9px calc(11px + env(safe-area-inset-bottom))}.actions .icon:nth-child(2){display:none}.brandbar{height:68px}}
+</style>
+<style>
+/* Nastarinim interface refresh */
+:root{color-scheme:light;--bg:#f3f1ee;--panel:#fff;--line:#ece9e5;--ink:#222b31;--muted:#879097;--green:#386c61;--green2:#e9f2ee;--chat:#f5f4f1;--shadow:0 24px 70px #27312c14;--accent:#386c61;--accent-soft:#e6efeb;--warm:#faf8f5}
+*{box-sizing:border-box}
+body{background:radial-gradient(ellipse at 20% 0%,#ece9e3 0,transparent 36%),var(--bg);color:var(--ink);letter-spacing:-.01em}
+button{transition:background .18s ease,color .18s ease,transform .18s ease,box-shadow .18s ease}
+.shell{height:100dvh;max-width:1540px;padding:28px}
+.app{border:1px solid #e8e5e1;border-radius:25px;box-shadow:0 28px 90px #30393412;grid-template-columns:310px minmax(0,1fr)}
+.side{background:#fff}
+.brandbar{height:78px;padding:0 21px}
+.brand{font-size:17px;letter-spacing:-.4px}
+.logo{border-radius:14px;background:linear-gradient(145deg,#548a7c,#315d53);box-shadow:0 7px 16px #386c6130}
+.icon{border-radius:12px;color:#69747a}
+.icon:hover{background:#f1f4f2;color:#315d53}
+.search{margin:17px 16px 21px;height:43px;border:1px solid #eeece8;background:#f8f8f7;border-radius:12px}
+.search:focus-within{border-color:#b9cec6;box-shadow:0 0 0 3px #386c610c}
+.sectionlabel{color:#9aa19e;padding-bottom:10px;font-size:10px;letter-spacing:1.15px}
+.conversation{margin:0 10px;padding:12px;border:1px solid transparent;background:#f0f5f2;border-radius:15px;min-height:72px}
+.conversation:hover{background:#eaf2ee}
+.avatar{width:44px;height:44px;background:linear-gradient(145deg,#d9b8a8,#a37668);font-size:19px;box-shadow:inset 0 0 0 1px #ffffff60}
+.convname{font-weight:700;font-size:13px}
+.time{font-size:10px}
+.last{font-size:11px;color:#7e8985}
+.sidebottom{padding:16px 18px;border-color:#f0eeeb}
+.avatar.you{background:linear-gradient(145deg,#82998e,#536f64);box-shadow:none}
+.user-name{font-size:12px}
+.user-sub{font-size:10px}
+.main{background:var(--chat)}
+.topbar{height:76px;padding:0 27px;gap:12px;background:#fff;border-color:#eeece8}
+.topbar>.avatar{width:42px;height:42px}
+.topname{font-size:14px;font-weight:720}
+.topstatus{font-size:11px;color:#78837e}
+.actions .icon{border:1px solid transparent}
+.actions .icon:hover{border-color:#eeece8;background:#f8f8f6}
+.feed{padding:30px clamp(18px,6vw,100px);gap:12px;background-color:#f5f4f1;background-image:radial-gradient(#d7d9d3 0.65px,transparent .65px);background-size:20px 20px}
+.day.hidden{display:none}.day{padding:5px 12px;border:1px solid #ebe9e4;border-radius:999px;background:#ffffffed;color:#818a86;font-size:10px;letter-spacing:.035em;box-shadow:0 2px 8px #1b241a08}
+.welcome{width:min(400px,88%);margin:auto;padding:27px 29px;border:1px solid #ebe9e4;border-radius:21px;background:#fff;box-shadow:0 12px 36px #33362e0b}
+.welcome-icon{width:54px;height:54px;margin:0 auto 15px;border-radius:18px;background:#eef3ef;display:grid;place-items:center;font-size:25px}
+.welcome h2{font-size:17px;letter-spacing:-.3px;margin:0 0 7px}
+.welcome p{font-size:12px;line-height:1.65;color:#7f8985}
+.bubble{max-width:min(72%,580px);padding:11px 14px 8px;border-radius:17px 17px 17px 5px;background:#fff;border-color:#ebe9e4;box-shadow:0 3px 10px #242b2508;font-size:13px;line-height:1.55;color:#29312e}
+.bubble.mine{background:#e4f0e9;border-color:#dce9e1;border-radius:17px 17px 5px 17px}
+.bubble .media{border-radius:12px;margin-bottom:7px}
+.meta{font-size:10px;color:#909a95}
+.composer-wrap{padding:14px 22px 15px;background:#fff;border-color:#eeece8}
+.preview{border-color:#ece9e5;background:#faf9f7}
+.composer{gap:9px}
+.compose-icon{width:42px;height:44px;border:1px solid transparent;border-radius:13px;color:#63736c}
+.compose-icon:hover{background:#eff4f1;color:#315d53}
+.entry{min-height:44px;background:#f8f8f7;border-color:#ecebe7;border-radius:14px;padding:11px 15px;font-size:13px}
+.entry:focus{border-color:#9ebcaf;box-shadow:0 0 0 3px #386c610c}
+.send{height:44px;width:44px;border-radius:14px;background:linear-gradient(145deg,#4b7c70,#315e53);box-shadow:0 5px 14px #386c612b}
+.send:hover{background:#2e5b50;transform:translateY(-1px)}
+.send:disabled{transform:none}
+.hint{font-size:10px;color:#a0a7a2;margin-top:9px}
+.auth{background:#1d2925b8;backdrop-filter:blur(8px);padding:18px}
+.authcard{width:min(410px,100%);padding:34px 34px 29px;border:1px solid #f0eeea;border-radius:24px;box-shadow:0 30px 90px #101a1666}
+.authcard .logo{width:52px;height:52px;border-radius:17px;margin-bottom:19px}
+.authcard h1{font-size:21px;letter-spacing:-.45px}
+.authcard p{line-height:1.6}
+.authcard input{height:48px;background:#fbfbfa;border-color:#e9e8e3;padding:0 15px}
+.authcard input:focus{box-shadow:0 0 0 3px #386c6112}
+.authcard button{height:47px;margin-top:13px;background:linear-gradient(145deg,#4b7c70,#315e53);box-shadow:0 6px 16px #386c6124}
+.authcard button:hover{background:#2f5d52}
+.authcard button:disabled{opacity:.7}
+.authhint{line-height:1.55}
+.toast{bottom:28px;border:1px solid #ffffff20;background:#23332d;border-radius:14px;padding:12px 17px;font-size:12px}
+.mobileback{display:none}
+@media(max-width:900px){.shell{padding:14px}.app{grid-template-columns:275px minmax(0,1fr)}.feed{padding-left:28px;padding-right:28px}}
+@media(max-width:760px){.shell{padding:0}.app{border:0;border-radius:0;grid-template-columns:1fr}.side{display:flex}.main{display:none}.app.open .side{display:none}.app.open .main{display:flex}.mobileback{display:grid}.feed{padding:18px 14px}.bubble{max-width:88%}.topbar{padding:0 13px;height:66px;gap:9px}.topbar>.avatar{width:39px;height:39px}.composer-wrap{padding:10px 10px calc(11px + env(safe-area-inset-bottom))}.actions .icon:nth-child(2){display:grid}.brandbar{height:67px}.conversation{min-height:70px}.welcome{padding:24px 22px}.hint{margin-top:7px}.authcard{padding:30px 24px 25px}}
+@media(max-width:380px){.actions .icon{width:34px;height:36px}.composer{gap:5px}.compose-icon,.send{width:39px;height:42px}.entry{padding:10px 11px}.topbar{gap:7px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
 </style></head>
 <body>
 <div class="shell"><div class="app" id="app">
 <aside class="side"><div class="brandbar"><div class="brand"><div class="logo">✦</div>Nastarinim</div><button class="icon" id="lockBtn" title="Chiqish">↪</button></div>
-<label class="search">⌕ <input id="search" placeholder="Suhbatni qidiring" aria-label="Suhbatni qidiring"></label><div class="sectionlabel">Xabarlar</div>
-<div class="conversation" id="conversation"><div class="avatar">✿</div><div class="convinfo"><div class="convtop"><span class="convname" id="contactName">Hayotim</span><span class="time" id="listTime"></span></div><div class="last" id="lastMessage">Muloqotni boshlash uchun yozing</div></div><span class="badge"></span></div>
+<label class="search">⌕ <input id="search" placeholder="Suhbatni qidirish" aria-label="Suhbatni qidirish"></label><div class="sectionlabel">Xabarlar</div>
+<div class="conversation" id="conversation"><div class="avatar">✿</div><div class="convinfo"><div class="convtop"><span class="convname" id="contactName">Hayotim</span><span class="time" id="listTime"></span></div><div class="last" id="lastMessage">Xabarlashishni boshlang</div></div><span class="badge"></span></div>
 <div class="sidebottom"><div class="avatar you">S</div><div class="user-meta"><div class="user-name">Shaxsiy akkaunt</div><div class="user-sub">Faqat siz va yaqin insoningiz</div></div><span class="badge"></span></div></aside>
 <main class="main"><header class="topbar"><button class="icon mobileback" id="back">‹</button><div class="avatar">✿</div><div class="topmeta"><div class="topname" id="headerName">Hayotim</div><div class="topstatus"><span class="badge"></span><span id="status">Ulanmoqda...</span></div></div><div class="actions"><button class="icon" title="Ovoz yozish" id="topMic">♩</button><button class="icon" title="Suhbat maʼlumoti" id="infoBtn">ⓘ</button></div></header>
-<section class="feed" id="feed"><div class="day">BUGUN</div><div class="welcome" id="welcome"><div class="welcome-icon">💬</div><h2>Shaxsiy suhbat</h2><p>Xabarlaringiz bevosita suhbatdoshingizning Telegram’iga yetkaziladi. U javob yozganda shu yerda paydo bo‘ladi.</p></div></section>
-<div class="composer-wrap"><div class="preview" id="preview"><span id="previewIcon">📎</span><div class="preview-name" id="previewName"></div><audio id="previewAudio" controls class="hidden"></audio><button class="icon" id="clearFile" aria-label="Faylni olib tashlash">×</button></div><div class="composer"><button class="compose-icon" id="fileBtn" title="Fayl biriktirish">＋</button><input class="hidden" type="file" id="fileInput" accept="image/*,video/*,audio/*,.pdf,.doc,.docx,.zip,.txt"><input class="hidden" type="file" id="cameraInput" accept="image/*" capture="environment"><textarea class="entry" id="message" rows="1" placeholder="Xabar yozing… (Enter — yuborish)"></textarea><button class="compose-icon" id="micBtn" title="Ovoz yozish">🎙</button><button class="send" id="sendBtn" title="Yuborish">➤</button></div><div class="hint">Enter — yuborish · Shift + Enter — yangi qator</div></div></main>
+<section class="feed" id="feed" aria-label="Xabarlar" aria-live="polite"><div class="welcome" id="welcome"><div class="welcome-icon">💬</div><h2>Shaxsiy suhbat</h2><p>Xabarlaringiz bevosita suhbatdoshingizning Telegram’iga yetkaziladi. U javob yozganda shu yerda paydo bo‘ladi.</p></div></section>
+<div class="composer-wrap"><div class="preview" id="preview"><span id="previewIcon">📎</span><div class="preview-name" id="previewName"></div><audio id="previewAudio" controls class="hidden"></audio><button class="icon" id="clearFile" aria-label="Faylni olib tashlash">×</button></div><div class="composer"><button class="compose-icon" id="fileBtn" title="Fayl biriktirish">＋</button><input class="hidden" type="file" id="fileInput" accept="image/*,video/*,audio/*,.pdf,.doc,.docx,.zip,.txt"><input class="hidden" type="file" id="cameraInput" accept="image/*" capture="environment"><textarea class="entry" id="message" rows="1" maxlength="4000" aria-label="Xabar matni" placeholder="Xabar yozing…"></textarea><button class="compose-icon" id="micBtn" title="Ovoz yozish">🎙</button><button class="send" id="sendBtn" title="Yuborish">➤</button></div><div class="hint">Yuborish uchun Enter bosing · yangi qator uchun Shift + Enter</div></div></main>
 </div></div>
 <div class="auth" id="auth" role="dialog" aria-modal="true" aria-labelledby="authTitle"><form class="authcard" id="authForm"><div class="logo">✦</div><h1 id="authTitle">Shaxsiy suhbatga kiring</h1><p>Bu suhbatga faqat ruxsat kalitiga ega odam kira oladi.</p><input id="accessKey" type="password" autocomplete="current-password" placeholder="Kirish kaliti" required><button id="authSubmit" type="submit">Xavfsiz kirish</button><p class="auth-error" id="authError" role="alert" aria-live="polite"></p><div class="authhint">Kirish kaliti Cloudflare’da saqlanadi va suhbatni himoya qiladi.</div></form></div><div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>const API_BASE = "https://nastarinim.damirshokh.workers.dev";
@@ -56,10 +129,26 @@ function addMessage(m) {
   const id = m.id == null ? null : String(m.id);
   if (id && seenMessages.has(id)) return;
   if (id) seenMessages.add(id);
+  const nearBottom = feed.scrollHeight - feed.scrollTop - feed.clientHeight < 140;
   const welcome = $("#welcome");
   if (welcome) welcome.remove();
+  const day = document.createElement("div");
+  day.className = "day";
+  const messageDate = new Date(m.created_at || Date.now());
+  const dateKey = Number.isNaN(messageDate.getTime()) ? "unknown" : messageDate.toLocaleDateString("sv-SE");
+  const previousMessage = feed.querySelector(".bubble:last-of-type");
+  if (!previousMessage || previousMessage.dataset.dateKey !== dateKey) {
+    day.dataset.dateKey = dateKey;
+    const today = new Date().toLocaleDateString("sv-SE");
+    const yesterdayDate = new Date(); yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+    const yesterday = yesterdayDate.toLocaleDateString("sv-SE");
+    day.textContent = dateKey === today ? "BUGUN" : dateKey === yesterday ? "KECHA" : messageDate.toLocaleDateString("uz-UZ", { day: "numeric", month: "long", year: "numeric" });
+    day.classList.remove("hidden");
+    feed.append(day);
+  }
   const bubble = document.createElement("article");
   bubble.className = "bubble" + (m.direction === "out" ? " mine" : "");
+  bubble.dataset.dateKey = dateKey;
   if (m.file_url) {
     let element;
     if (m.type === "image") {
@@ -115,7 +204,7 @@ function addMessage(m) {
   meta.textContent = localTime(m.created_at) + (m.direction === "out" ? "  ✓✓" : "");
   bubble.append(meta);
   feed.append(bubble);
-  feed.scrollTop = feed.scrollHeight;
+  if (nearBottom) feed.scrollTop = feed.scrollHeight;
   $("#lastMessage").textContent = m.text || (m.type === "image" ? "📷 Rasm" : m.type === "voice" ? "🎙 Ovozli xabar" : "📎 Fayl");
   $("#listTime").textContent = localTime(m.created_at);
   cursor = Math.max(cursor, Number(m.id) || cursor);
@@ -248,9 +337,10 @@ function clearConversation() {
     if (bubble.dataset.objectUrl) URL.revokeObjectURL(bubble.dataset.objectUrl);
     bubble.remove();
   });
+  feed.querySelectorAll(".day").forEach(day => day.remove());
   seenMessages.clear();
   cursor = 0;
-  $("#lastMessage").textContent = "Muloqotni boshlash uchun yozing";
+  $("#lastMessage").textContent = "Xabarlashishni boshlang";
   $("#listTime").textContent = "";
   if (!$("#welcome")) {
     const welcome = document.createElement("div");
@@ -282,12 +372,15 @@ $("#lockBtn").onclick = () => {
   showAuth("Sessiya yopildi. Davom etish uchun kirish kalitini kiriting.", true);
 };
 $("#search").oninput = event => {
-  $("#conversation").style.display = "hayotim".includes(event.target.value.toLowerCase()) ? "flex" : "none";
+  const query = event.target.value.trim().toLocaleLowerCase();
+  const name = $("#contactName").textContent.toLocaleLowerCase();
+  $("#conversation").style.display = name.includes(query) ? "flex" : "none";
 };
 $("#infoBtn").onclick = () => notify("Shaxsiy suhbat · Xabarlar Telegram orqali yetkaziladi");
 async function recordVoice() {
   if (recording) { recorder?.stop(); return; }
   try {
+    if (!navigator.mediaDevices?.getUserMedia || !window.MediaRecorder) throw new Error("unsupported");
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     recorder = new MediaRecorder(stream);
     const chunks = [];
@@ -302,7 +395,7 @@ async function recordVoice() {
     recording = true;
     $("#micBtn").textContent = "■";
     notify("Ovoz yozilmoqda. To‘xtatish uchun tugmani bosing.");
-  } catch { notify("Mikrofonga ruxsat berilmadi."); }
+  } catch (error) { notify(error.message === "unsupported" ? "Bu qurilmada ovoz yozish mavjud emas." : "Mikrofonga ruxsat berilmadi."); }
 }
 $("#micBtn").onclick = recordVoice;
 $("#topMic").onclick = recordVoice;
